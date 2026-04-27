@@ -1,0 +1,9 @@
+# CVs from the source zip that could not be extracted (5 of 59):
+#
+# Brunin Maxime - 2025.docx          (corrupt zip, file truncated)
+# Brunin Maxime - 2025 (1).docx      (corrupt zip, duplicate of above)
+# Kampen Wim - 2023.docx             (corrupt zip, file truncated)
+# Meyers Bart - 2023.docx            (corrupt zip, file truncated)
+# Alper Bas aug 2025.pdf             (Canva export, image-only PDF, no text layer)
+#
+# Net: 54 of 59 CVs in this dataset.

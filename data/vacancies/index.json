@@ -1,0 +1,54 @@
+{
+  "VAC-001": {
+    "title": "Java developer",
+    "region": "Vlaanderen",
+    "contract_types": [
+      "Intern"
+    ],
+    "work_regimes": [],
+    "is_freelance": false,
+    "internal_id": 175
+  },
+  "VAC-002": {
+    "title": "Cloud engineer (Freelance)",
+    "region": "Vlaanderen",
+    "contract_types": [],
+    "work_regimes": [],
+    "is_freelance": true,
+    "internal_id": 226
+  },
+  "VAC-003": {
+    "title": "Java developer (FL)",
+    "region": "Vlaanderen",
+    "contract_types": [
+      "Intern"
+    ],
+    "work_regimes": [],
+    "is_freelance": true,
+    "internal_id": 225
+  },
+  "VAC-004": {
+    "title": "Cloud-native developer",
+    "region": "Vlaanderen",
+    "contract_types": [
+      "Onbepaalde duur"
+    ],
+    "work_regimes": [
+      "Voltijds"
+    ],
+    "is_freelance": false,
+    "internal_id": 9
+  },
+  "VAC-005": {
+    "title": "Devops Engineer",
+    "region": "Vlaanderen",
+    "contract_types": [
+      "Onbepaalde duur"
+    ],
+    "work_regimes": [
+      "Voltijds"
+    ],
+    "is_freelance": false,
+    "internal_id": 7
+  }
+}

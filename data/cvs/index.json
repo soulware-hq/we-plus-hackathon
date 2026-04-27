@@ -1,0 +1,1656 @@
+{
+  "CAND-001": {
+    "id": "CAND-001",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Prince 2",
+      "MS Project",
+      "Jira",
+      "Confluence",
+      "Clarity",
+      "ServiceNow",
+      "Agile/Scrum",
+      "Waterfall"
+    ],
+    "years_experience": 28,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (basic)"
+    ],
+    "region": "Brussel",
+    "regime": "freelance",
+    "key_employers": [
+      "P&V",
+      "YPTO",
+      "Infrabel",
+      "Agentschap Integratie en Inburgering",
+      "Deutsche Bank Belgium"
+    ],
+    "summary": "Senior Project Manager with 28y experience in IT/infra projects across banking, public sector and railway; Prince 2 + Scrum Master certified."
+  },
+  "CAND-002": {
+    "id": "CAND-002",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Microsoft Dynamics 365 CE",
+      "Python",
+      "JavaScript",
+      "React",
+      "Angular",
+      "Vue.js",
+      "Azure",
+      "AWS"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "Freelance AI Consultant",
+      "NORRIQ BENELUX",
+      "Arinto",
+      "PEC"
+    ],
+    "summary": "Techno-functional consultant with 10y experience, currently freelance AI consultant; previously Dynamics 365 implementer and UI/UX dev."
+  },
+  "CAND-003": {
+    "id": "CAND-003",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "ISO27001",
+      "ISO27002",
+      "ISO27701",
+      "NIST CSF",
+      "DPIA"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "Arabic (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (good)"
+    ],
+    "region": "Antwerpen",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "Toreon BV"
+    ],
+    "summary": "Junior Data Privacy Advisor / DPO-aaS with legal background, 4y in GDPR consulting; CIPP, ISO Lead Implementer, Data Protection Auditor."
+  },
+  "CAND-004": {
+    "id": "CAND-004",
+    "primary_role": "Data engineer/scientist",
+    "primary_stack": [
+      "Python",
+      "Pandas",
+      "Scikit-learn",
+      "SQL",
+      "Tableau",
+      "QlikView",
+      "1C:Enterprise"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "English (Advanced)",
+      "Dutch (A1)",
+      "Russian (Near-Native)",
+      "Kyrgyz (Native)"
+    ],
+    "region": "Antwerpen",
+    "regime": "unknown",
+    "key_employers": [
+      "Gazprom Neft Asia",
+      "BishBeCreative",
+      "Freelance"
+    ],
+    "summary": "Junior data scientist with MSc Business Economics (Data Science) Antwerp; 10y mixed background in finance/budget analysis and data projects."
+  },
+  "CAND-005": {
+    "id": "CAND-005",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO 27001",
+      "NIS2",
+      "Splunk ES",
+      "CrowdStrike Falcon",
+      "Cisco IOS",
+      "Fortinet"
+    ],
+    "years_experience": 18,
+    "languages": [
+      "English (Fluent)",
+      "Dutch (B2)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "unknown",
+    "key_employers": [
+      "CS VISOR Germany",
+      "BC Foods",
+      "Ministry of Finance Turkey"
+    ],
+    "summary": "Information Security Officer with 18y experience, ISO 27001 Lead Auditor; transitioned from Turkish public sector to private cybersecurity. Extraction quality poor.",
+    "extraction_quality": "poor"
+  },
+  "CAND-006": {
+    "id": "CAND-006",
+    "primary_role": "Frontend developer",
+    "primary_stack": [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "Adobe Experience Manager",
+      "SCSS",
+      "Webpack",
+      "Next.js"
+    ],
+    "years_experience": 7,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Joyn",
+      "AG Insurance",
+      "Atlas Copco",
+      "Firestone Building Products EMEA",
+      "Bose",
+      "Janssen Pharmaceutica"
+    ],
+    "summary": "Lead Front End Developer with 7y experience in React/AEM at clients like Joyn (KBC), AG Insurance and Atlas Copco."
+  },
+  "CAND-007": {
+    "id": "CAND-007",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO 27001",
+      "NIS Directive",
+      "ISMS",
+      "GRC",
+      "DPO",
+      "CISO-as-a-Service"
+    ],
+    "years_experience": 30,
+    "languages": [
+      "French (native)",
+      "Dutch",
+      "English"
+    ],
+    "region": "Wallonië",
+    "regime": "freelance",
+    "key_employers": [
+      "Nezha Consulting",
+      "Cerba Research",
+      "ATOS Digital Security",
+      "Sopra Steria",
+      "Mielabelo",
+      "Crossroad Bank for Social Security"
+    ],
+    "summary": "CISO / Senior Information Security Consultant, 30y experience in social security, healthcare and railway sectors; ISO 27001 Senior Lead Implementer."
+  },
+  "CAND-008": {
+    "id": "CAND-008",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Prince 2",
+      "SCRUM",
+      "Agile",
+      "Waterfall",
+      "Lean Six Sigma",
+      "ITIL",
+      "PMO",
+      "PPM"
+    ],
+    "years_experience": 28,
+    "languages": [
+      "English (native)",
+      "German (native)",
+      "Dutch (business fluent)",
+      "French (conversational)"
+    ],
+    "region": "Belgium",
+    "regime": "freelance",
+    "key_employers": [
+      "T-Mobile",
+      "ista",
+      "essent",
+      "option",
+      "euroports",
+      "colruytgroup"
+    ],
+    "summary": "COO / Program Director / Operational Excellence Leader with 28y experience across Europe/USA/Asia; dual American-Belgian, NED and Business Angel."
+  },
+  "CAND-009": {
+    "id": "CAND-009",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "ISO 27001",
+      "ISO 27005",
+      "ISO 27701",
+      "NIS 2",
+      "DORA",
+      "DMA-DSA",
+      "DPIA"
+    ],
+    "years_experience": 9,
+    "languages": [
+      "French (native)",
+      "English (Professional)",
+      "Spanish (Professional)",
+      "Dutch (Basic)"
+    ],
+    "region": "Other",
+    "regime": "freelance",
+    "key_employers": [
+      "BEMS Conseil",
+      "Stellantis",
+      "Macopharma",
+      "Sienna IM",
+      "DBF Automobiles",
+      "Auchan Retail France"
+    ],
+    "summary": "External DPO / Senior GDPR Consultant since 2016, France-based with cross-border (FR/BE/ES/TR) projects across automotive, retail, pharma and HR sectors."
+  },
+  "CAND-010": {
+    "id": "CAND-010",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "ISO/IEC 27001",
+      "ISO/IEC 27002",
+      "Python",
+      "Cybersecurity",
+      "DPIA"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (very good)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "employed",
+    "key_employers": [
+      "Courtside.Law",
+      "Advocaat Debruyne",
+      "Sirius Legal",
+      "FEDNOT",
+      "Ordina NV",
+      "KBC Bank",
+      "DHL Express"
+    ],
+    "summary": "Lawyer Trainee specialising in IT/IP/Data Protection law combined with hands-on cybersecurity background (ISO 27001 auditor, KBC privacy officer)."
+  },
+  "CAND-011": {
+    "id": "CAND-011",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Java",
+      "Spring",
+      "AWS",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Go",
+      "TypeScript"
+    ],
+    "years_experience": 7,
+    "languages": [
+      "Dutch (Native)",
+      "English (Fluent)",
+      "German (Fluent)",
+      "French (Basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Vakantiehuis Fabiola vzw",
+      "WE+",
+      "FraktionX",
+      "Continuum - Jidoka",
+      "ABB",
+      "Enervalis",
+      "Cloudway",
+      "Toyota Motor Europe"
+    ],
+    "summary": "Full-stack developer with 7y experience across charging infrastructure (ABB), logistics (Directport) and cloud (Cloudway/AWS); recently joined WE+."
+  },
+  "CAND-012": {
+    "id": "CAND-012",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "OpenText Content Server",
+      "SAP",
+      "Kubernetes",
+      "Azure",
+      "Oracle 19c",
+      "BPM",
+      "Prince2",
+      "SQL"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (good)"
+    ],
+    "region": "Belgium",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "Colruyt",
+      "European Investment Bank",
+      "NMBS",
+      "European Central Bank",
+      "Deloitte",
+      "Transport NSW Australia"
+    ],
+    "summary": "Senior business/functional analyst and project manager, 25y in OpenText/ECM and SAP integration with international experience (EIB, ECB, Australia)."
+  },
+  "CAND-013": {
+    "id": "CAND-013",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "TIBCO",
+      "Calypso",
+      "SAP",
+      "J2EE",
+      "Unix",
+      "Microsoft Project",
+      "Agile/SAFe"
+    ],
+    "years_experience": 30,
+    "languages": [
+      "Dutch (Native)",
+      "English (Fluent)",
+      "French (Fluent)"
+    ],
+    "region": "Brussel",
+    "regime": "freelance",
+    "key_employers": [
+      "BNP Paribas",
+      "JPMC",
+      "ING",
+      "Deutsche Bank",
+      "Société Générale",
+      "Clearstream",
+      "Euroclear"
+    ],
+    "summary": "Senior programme manager with 30y in financial services across Europe; CEO of own apps venture; led major banking transformations (BNP Easy Banking, ING SCT, etc.)."
+  },
+  "CAND-014": {
+    "id": "CAND-014",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "NIS2",
+      "ISO 27001",
+      "Fortinet",
+      "Check Point",
+      "F5",
+      "Cisco",
+      "Palo Alto",
+      "Active Directory",
+      "O365"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch (fluent)",
+      "French (proficient)",
+      "English (proficient)",
+      "German (basic)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "Cyberlogics (own)",
+      "Nextiraone NV / Dimension Data",
+      "Avitour",
+      "APK Infra"
+    ],
+    "summary": "Freelance cybersecurity consultant, 20y experience in network/firewall security; NIS2 Lead Implementer, CISSP in training."
+  },
+  "CAND-015": {
+    "id": "CAND-015",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "NIS2",
+      "ISO 27k",
+      "NIST",
+      "OWASP",
+      "Penetration Testing",
+      "Kali Linux",
+      "Burp Suite",
+      "Splunk"
+    ],
+    "years_experience": 26,
+    "languages": [
+      "Dutch (Native)",
+      "English (Native)",
+      "French (Advanced)",
+      "German (Intermediate)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Sys Hax International",
+      "Digitaal Vlaanderen",
+      "ZLM Verzekeringen",
+      "VDAB",
+      "YPTO",
+      "Carrefour Belgium",
+      "KBC Bank",
+      "Argenta Bank",
+      "ING BANK",
+      "CEGEKA"
+    ],
+    "summary": "Principal Security Advisor and penetration tester with 26y experience as freelance CISO/architect across banking, retail and Flemish Government; CISSP, CISM, CISA, CRISC."
+  },
+  "CAND-016": {
+    "id": "CAND-016",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Penetration Testing",
+      "Network Security",
+      "Cisco",
+      "Active Directory",
+      "Windows Server",
+      "BackTrack",
+      "Nessus"
+    ],
+    "years_experience": 26,
+    "languages": [
+      "Dutch (Native)",
+      "English (Professional Working)",
+      "French (Limited Working)",
+      "German (Elementary)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "SYSHAX International",
+      "Zero Trust Security",
+      "Delitad (CRONOS)",
+      "Secutec",
+      "Devoteam",
+      "Belgacom",
+      "Ferranti Computer Systems"
+    ],
+    "summary": "Founder & CSO at Zero Trust Security; 26y in offensive security testing, penetration testing and network engineering. Likely overlap with CAND-015 (LinkedIn vs Privatum CV of same profile pattern)."
+  },
+  "CAND-017": {
+    "id": "CAND-017",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Jira",
+      "Confluence",
+      "SAFe",
+      "Scrum",
+      "Power BI",
+      "SQL",
+      "Python",
+      "BPMN"
+    ],
+    "years_experience": 8,
+    "languages": [
+      "Dutch (Native)",
+      "French (Native)",
+      "English (C2)"
+    ],
+    "region": "Brussel",
+    "regime": "freelance",
+    "key_employers": [
+      "ATOS",
+      "CERTIMED",
+      "ATLANCE",
+      "AXA"
+    ],
+    "summary": "Scrum Master / Business Analyst / PM with 8y experience; freelance for Walloon Government, MSc Data Science; SAFe 5.1 + PSM I certified."
+  },
+  "CAND-018": {
+    "id": "CAND-018",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Jira",
+      "Confluence",
+      "Adobe Experience Manager",
+      "Drupal",
+      "Sitecore",
+      "Figma",
+      "Adobe Photoshop",
+      "Sketch"
+    ],
+    "years_experience": 13,
+    "languages": [
+      "Dutch (Native)",
+      "English (Advanced)",
+      "French (Basic)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "employed",
+    "key_employers": [
+      "iO",
+      "Conundra",
+      "De Lijn",
+      "VRT",
+      "Telenet",
+      "Breex",
+      "Digipolis",
+      "Delhaize",
+      "VDAB"
+    ],
+    "summary": "Project Manager / Product Owner with UX/UI design background, 13y experience at iO, VRT (Branded Radio PO), Telenet (Atomic Design System) and Delhaize."
+  },
+  "CAND-019": {
+    "id": "CAND-019",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO27001",
+      "NIST",
+      "CISSP",
+      "Cyber Security",
+      "ITIL",
+      "ServiceNow",
+      "JIRA",
+      "Confluence"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (advanced)"
+    ],
+    "region": "West-Vlaanderen",
+    "regime": "freelance",
+    "key_employers": [
+      "Argenta",
+      "Atlas Copco",
+      "Carrefour Belgium",
+      "Proximus",
+      "BNP Paribas Fortis"
+    ],
+    "summary": "Senior security/privacy consultant with 20y experience in cyber security governance, risk management and compliance (ISO27001, NIST, GDPR) across banks and large enterprises."
+  },
+  "CAND-020": {
+    "id": "CAND-020",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Prince 2",
+      "Agile",
+      "Scrum",
+      "Jira",
+      "Confluence",
+      "Change Management",
+      "HP ALM"
+    ],
+    "years_experience": 15,
+    "languages": [
+      "Dutch",
+      "French",
+      "English",
+      "German"
+    ],
+    "region": "Antwerpen",
+    "regime": "unknown",
+    "key_employers": [
+      "LCM",
+      "Stater",
+      "Argenta",
+      "Delhaize",
+      "HP/EDS"
+    ],
+    "summary": "Senior program/project manager with 15y experience in change and stakeholder management at financial institutions, mutualities and Flemish Government."
+  },
+  "CAND-021": {
+    "id": "CAND-021",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO27001",
+      "GDPR",
+      "Business Continuity",
+      "Risk Management",
+      "NIST2",
+      "Crisis Management",
+      "DR",
+      "BCP"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "English (native)",
+      "Afrikaans (fluent)",
+      "Dutch (basic)",
+      "French (basic)"
+    ],
+    "region": "unknown",
+    "regime": "unknown",
+    "key_employers": [
+      "BeSecure (DHL)",
+      "Sopra Steria",
+      "BNP Paribas Fortis",
+      "Proximus",
+      "NBC Universal"
+    ],
+    "summary": "Senior Information Security/BCM consultant, 20y experience in ISO27001 implementation, GDPR and business continuity for global organisations."
+  },
+  "CAND-022": {
+    "id": "CAND-022",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "Oracle Applications",
+      "SQL",
+      "COBOL",
+      "XML",
+      "JIRA",
+      "Confluence",
+      "UML",
+      "BPMN"
+    ],
+    "years_experience": 31,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "German (basic)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "freelance",
+    "key_employers": [
+      "Smals",
+      "Solidaris",
+      "UWV",
+      "QNH",
+      "KT-scholengroep"
+    ],
+    "summary": "Functional/data analyst with 31y experience, recent work at Smals (Vlaamse Sociale Bescherming) and Solidaris on healthcare/social-security applications."
+  },
+  "CAND-023": {
+    "id": "CAND-023",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "NIS2",
+      "DORA",
+      "ISO 27001",
+      "Cybersecurity Governance",
+      "SOC",
+      "IAM",
+      "DRP/BCDR",
+      "RGPD"
+    ],
+    "years_experience": 9,
+    "languages": [
+      "English (bilingual)",
+      "French (bilingual)",
+      "Arabic (native)"
+    ],
+    "region": "Other",
+    "regime": "employed",
+    "key_employers": [
+      "Devoteam",
+      "Crédit Agricole CA-CIB",
+      "CNAM",
+      "Dubbing Brothers",
+      "OPCO Atlas"
+    ],
+    "summary": "International CISO/RSSI with 9y experience in cybersecurity governance, NIS2/DORA compliance and BCDR programmes across finance, public sector and media."
+  },
+  "CAND-024": {
+    "id": "CAND-024",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "SAP S4 Hana",
+      "Python",
+      "SQL",
+      "Jira",
+      "Confluence",
+      "Lucid",
+      "Miro",
+      "AWS"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "Dutch (native)",
+      "English (native)",
+      "French (basic)",
+      "German (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "DataStories",
+      "DAF Trucks",
+      "IPTE Factory Automation"
+    ],
+    "summary": "Functional analyst/Product Manager with 10y experience, currently at Nike on SAP S4 Hana migration; background in data engineering and industrial automation."
+  },
+  "CAND-025": {
+    "id": "CAND-025",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "Infor LN",
+      "Baan",
+      "ERP",
+      "WMS",
+      "MES",
+      "Crystal Reports",
+      "SQL",
+      "Maximo"
+    ],
+    "years_experience": 38,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "German (fluent)",
+      "French (good)"
+    ],
+    "region": "Limburg",
+    "regime": "unknown",
+    "key_employers": [
+      "Xidoor",
+      "Euramax",
+      "Bosal",
+      "Hanssen Transmission",
+      "Rettig Belgium (Radson)"
+    ],
+    "summary": "Senior business/functional analyst with 38y experience implementing ERP (Baan/Infor LN) and WMS/MES across manufacturing companies in Belgium and abroad."
+  },
+  "CAND-026": {
+    "id": "CAND-026",
+    "primary_role": "Frontend developer",
+    "primary_stack": [
+      "Angular",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "Azure",
+      "AWS",
+      "RxJS",
+      "Cypress"
+    ],
+    "years_experience": 12,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)",
+      "German (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "employed",
+    "key_employers": [
+      "Fod IBZ - Dienst Vreemdelingenzaken",
+      "Alimento",
+      "Hospital Logistics",
+      "Alphabet (BMW)",
+      "Ravago"
+    ],
+    "summary": "Front-end developer with 12y experience in Angular/TypeScript, currently building the CIR identity platform for Belgian Immigration Office; background at BMW/Alphabet and Mazda."
+  },
+  "CAND-027": {
+    "id": "CAND-027",
+    "primary_role": "Scrum Master",
+    "primary_stack": [
+      "Scrum",
+      "SAFe",
+      "LeSS",
+      "Kanban",
+      "ICF Coaching",
+      "Jira",
+      "Miro",
+      "Azure DevOps"
+    ],
+    "years_experience": 12,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "freelance",
+    "key_employers": [
+      "Euroclear",
+      "Fluvius",
+      "Nike",
+      "Hummingbird BV",
+      "Medtronic"
+    ],
+    "summary": "Scrum Master/Agile Coach with ICF certification, 12y professional experience including agile transformations at Euroclear, Fluvius and Nike."
+  },
+  "CAND-028": {
+    "id": "CAND-028",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "Vue.js",
+      "Angular",
+      "TypeScript",
+      "Magnolia CMS",
+      "Azure",
+      "Keycloak"
+    ],
+    "years_experience": 9,
+    "languages": [
+      "Dutch (native)",
+      "English (professional)",
+      "French (basic)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "employed",
+    "key_employers": [
+      "Engie Electrabel",
+      "Sciensano",
+      "Interreg France-Wallonie-Vlaanderen",
+      "Digipolis",
+      "Anglr"
+    ],
+    "summary": "Java full-stack developer with 9y experience, long tenure at Engie Electrabel building customer-facing web platform; KU Leuven master in Electronics-ICT."
+  },
+  "CAND-029": {
+    "id": "CAND-029",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "SAP",
+      "SAP S/4 HANA",
+      "M&A",
+      "PMO",
+      "PRINCE2",
+      "Agile",
+      "Microsoft Dynamics 365",
+      "ERP"
+    ],
+    "years_experience": 27,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (fluent)"
+    ],
+    "region": "unknown",
+    "regime": "freelance",
+    "key_employers": [
+      "FKnight",
+      "EY IT Advisory",
+      "Burger King/Quick",
+      "ArcelorMittal Flatcarbon Steel",
+      "Computer Sciences Corporation"
+    ],
+    "summary": "Senior CxO-level consultant with 27y experience in IT management, M&A, SAP transformations and PMO for industrial/retail/utilities clients."
+  },
+  "CAND-030": {
+    "id": "CAND-030",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "SAFe",
+      "Scrum",
+      "Kanban",
+      "BPMN 2.0",
+      "Jira",
+      "Confluence",
+      "REST API",
+      "Requirements Engineering"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "employed",
+    "key_employers": [
+      "Liantis",
+      "Securex v.z.w.",
+      "Securex Rekencentrum",
+      "Securex Integrity",
+      "Argenta Spaarbank"
+    ],
+    "summary": "Business analyst/Project manager/Teamlead with 20y experience, recent roles as Teamlead/Functional Analyst at Liantis and Securex; SAFe Product Owner certified."
+  },
+  "CAND-031": {
+    "id": "CAND-031",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Penetration Testing",
+      "Python",
+      "OWASP",
+      "Kali Linux",
+      "Burp Suite",
+      "SQL Server",
+      "Power BI",
+      "SIEM"
+    ],
+    "years_experience": 14,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "N0B0T",
+      "WeAreOne.World",
+      "Tomorrowland",
+      "Digipolis",
+      "Sogeti"
+    ],
+    "summary": "Cyber security consultant and ethical hacker (founder of N0B0T) with 14y experience in penetration testing and BI, clients include Tomorrowland, City of Antwerp, ALDI."
+  },
+  "CAND-032": {
+    "id": "CAND-032",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "React",
+      "AWS",
+      "Kafka",
+      "Docker",
+      "Test Containers"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "WE+",
+      "VDAB",
+      "Inetum-Realdolmen",
+      "Alpine Digital"
+    ],
+    "summary": "Junior full-stack developer with 4y experience in Java/Spring Boot and Angular/React, currently at Nike on SAP S4 Hana migration; previously at VDAB and WE+."
+  },
+  "CAND-033": {
+    "id": "CAND-033",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "MS Dynamics",
+      "Prince2",
+      "Agile",
+      "Scrum",
+      "Jira",
+      "Confluence",
+      "DEVOPS",
+      "CRM"
+    ],
+    "years_experience": 24,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (good)"
+    ],
+    "region": "Limburg",
+    "regime": "freelance",
+    "key_employers": [
+      "Privatum",
+      "Heraeus Electro Nite",
+      "Rode Kruis Vlaanderen",
+      "USG People Belgium",
+      "KBC"
+    ],
+    "summary": "Senior Project Manager/Scrum Master with 24y experience in ICT and CRM (Microsoft Dynamics) at KBC, Red Cross Flanders and Heraeus."
+  },
+  "CAND-034": {
+    "id": "CAND-034",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "ITIL4",
+      "Agile",
+      "Scrum",
+      "UML",
+      "BPMN",
+      "OneTrust",
+      "Cherwell",
+      "OMNITRACKER"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "French (good)",
+      "English (fluent)",
+      "German (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Belgian Federal Police (ANPR)",
+      "TGS",
+      "CTG",
+      "ESKO",
+      "MCS Facility Management"
+    ],
+    "summary": "Business/Functional analyst and Project Manager with 25y experience, current role at Belgian Federal Police ANPR team; background in ITSM tooling and digital transformation."
+  },
+  "CAND-035": {
+    "id": "CAND-035",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Scrum Master",
+      "FTTH",
+      "VoIP",
+      "Networking",
+      "Cybersecurity",
+      "Cloud Computing",
+      "UML"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "English (advanced)",
+      "German (advanced)",
+      "French (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Solutions 30",
+      "JS-Investments BV",
+      "Constructel",
+      "Engie-Fabricom",
+      "Proximus"
+    ],
+    "summary": "Project manager and Scrum Master with 25y experience in fiber, telecom and ICT installations; entrepreneur (JS-Investments) with VCA-VOL certification."
+  },
+  "CAND-036": {
+    "id": "CAND-036",
+    "primary_role": "Other",
+    "primary_stack": [
+      "Digital Strategy",
+      "UX Design",
+      "Business Strategy",
+      "Marketing Automation",
+      "PowerBI",
+      "AEM",
+      "Hubspot",
+      "CRM"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch",
+      "English",
+      "French"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "DIDS",
+      "Plan.Net (Serviceplan)",
+      "Cegeka (Toyota Motor Europe)",
+      "Le Pain Quotidien",
+      "Nissan Motor Corporation"
+    ],
+    "summary": "Business consultant and digital strategist with 20y experience in digital marketing, UX, business strategy and data governance across automotive and retail."
+  },
+  "CAND-037": {
+    "id": "CAND-037",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Angular",
+      "Java",
+      "Spring Boot",
+      "Vue.js",
+      "Typescript",
+      "SCSS",
+      "Figma",
+      "CI/CD"
+    ],
+    "years_experience": 16,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Joyn",
+      "Atlas Copco",
+      "Sirus",
+      "WE+",
+      "KU Leuven ICTS"
+    ],
+    "summary": "Senior full-stack developer with 16y experience and strong front-end/UX focus, recently building Angular/React solutions for Joyn (KBC integration), Atlas Copco DAM platform and KU Leuven Toledo design systems."
+  },
+  "CAND-038": {
+    "id": "CAND-038",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Agile",
+      "PHP",
+      "Python",
+      "SQL",
+      "MySQL",
+      "Lean Six Sigma",
+      "ITIL"
+    ],
+    "years_experience": 35,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (basic)",
+      "Spanish (basic)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "freelance",
+    "key_employers": [
+      "Aptean/Objective",
+      "Linedata",
+      "Sofico",
+      "Shell",
+      "Engie"
+    ],
+    "summary": "PMP-certified senior Program/Project Manager with 35+ years experience across MES/WMS implementations, IoT software development and financial software, with Lean Six Sigma Black Belt and Civil Engineer background."
+  },
+  "CAND-040": {
+    "id": "CAND-040",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Information Security",
+      "Identity & Access Management",
+      "ISO27001",
+      "GDPR",
+      "Microsoft Identity Manager",
+      "Cloud Security",
+      "Privacy",
+      "Cybersecurity"
+    ],
+    "years_experience": 27,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (basic)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "CyberMinute",
+      "Quest For Security",
+      "Microsoft",
+      "Traxion",
+      "CCB",
+      "Brussels Airport"
+    ],
+    "summary": "Senior security consultant and CISO/DPO with 27y experience, Microsoft MVP for Security (11y), accredited Lead Auditor for ISO27001/27701/22301/9001, IAPP/ISC²/PECB/ISACA-authorized trainer."
+  },
+  "CAND-041": {
+    "id": "CAND-041",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Information Security",
+      "Identity & Access Management",
+      "ISO27001",
+      "GDPR",
+      "Microsoft Identity Manager",
+      "Cloud Security",
+      "Privacy",
+      "Cybersecurity"
+    ],
+    "years_experience": 26,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "CyberMinute",
+      "Quest For Security",
+      "Microsoft",
+      "Traxion",
+      "CCB",
+      "Brussels Airport"
+    ],
+    "summary": "Senior security consultant and CISO/DPO with 26y experience (Dutch CV version), Microsoft MVP for Security, accredited Lead Auditor for ISO27001/27701/22301/9001, BELGIUM/EU/NATO Secret clearance pending renewal."
+  },
+  "CAND-042": {
+    "id": "CAND-042",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Product Ownership",
+      "Microsoft Dynamics 365",
+      "HubSpot",
+      "Business Analysis",
+      "Data Quality",
+      "CRM",
+      "Process Automation"
+    ],
+    "years_experience": 6,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "2-Collab",
+      "Lease a Bike Belgium",
+      "Moore Belgium",
+      "Lemon Companies",
+      "Striktly",
+      "delaware BeLux"
+    ],
+    "summary": "Freelance IT Project Manager / Product Owner / Business Analyst with ~6y experience focused on digital transformation, process optimization and data quality across Belgian SMEs and international firms."
+  },
+  "CAND-043": {
+    "id": "CAND-043",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "Business Analysis",
+      "Scaled Agile",
+      "SAFe",
+      "Atlassian (Jira/Confluence)",
+      "Adobe Experience Manager",
+      "Archimate",
+      "Camunda",
+      "REST"
+    ],
+    "years_experience": 22,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (good)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "hiroki bv",
+      "Telenet (Randstad Digital)",
+      "Toyota Motor Europe",
+      "Toyota Insurance Management (Cegeka)",
+      "GFI",
+      "De Lijn"
+    ],
+    "summary": "Senior Business Analyst, Product Owner and Digital Architect with 22y consulting experience across Insurance, Mobility, Automotive and e-Commerce, leading pan-European Toyota digital programs (40+ markets) and digital transformations."
+  },
+  "CAND-044": {
+    "id": "CAND-044",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "OneTrust",
+      "Privacy-by-design",
+      "DPIA/PIA",
+      "Microsoft Power Platform",
+      "Figma",
+      "Jira/Confluence",
+      "Contract Lifecycle Management"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "English (professional)",
+      "French (basic)"
+    ],
+    "region": "Brussel",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "LEGILE",
+      "DHL Express",
+      "VRT",
+      "Vlaamse Overheid",
+      "Terumo",
+      "Tomorrowland"
+    ],
+    "summary": "Privacy & data-protection consultant with legal background (Master IP/IT-Law KU Leuven) and 4y experience in compliance, business analysis and CLM projects, currently Privacy Officer at VRT and Data Interoperability BA at Departement Omgeving."
+  },
+  "CAND-045": {
+    "id": "CAND-045",
+    "primary_role": "Backend developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "Apache Kafka",
+      "Azure",
+      "TypeScript",
+      "PostgreSQL",
+      "Angular",
+      "Elasticsearch"
+    ],
+    "years_experience": 3,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "employed",
+    "key_employers": [
+      "Ravago",
+      "Continuum"
+    ],
+    "summary": "Junior Java Software Crafter with ~3y experience focused on Event-Driven Architecture, Kafka and Azure serverless components, recently building data-streaming and Elasticsearch indexing solutions at Ravago."
+  },
+  "CAND-046": {
+    "id": "CAND-046",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "IT Project Management",
+      "ITIL",
+      "Prince2",
+      "PMBOK",
+      "AWS",
+      "Azure",
+      "Networking",
+      "Infrastructure"
+    ],
+    "years_experience": 36,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "Spanish (basic)",
+      "German (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Telenet (Axxes)",
+      "DPG Media (Tergos)",
+      "AG Insurance (Acensi)",
+      "Isabel Group (Mediaan)",
+      "Informatica Van Breda",
+      "VITO",
+      "Intel",
+      "Dialogic"
+    ],
+    "summary": "Senior IT Infrastructure Project Manager / Solution Design Engineer with 36+ years experience including ICT/Operations management, network/datacenter migrations and AWS cloud transformations across Belgian enterprises (Telenet, DPG Media, AG Insurance, Intel)."
+  },
+  "CAND-047": {
+    "id": "CAND-047",
+    "primary_role": "Backend developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "SQL",
+      "AWS",
+      "Azure",
+      "REST",
+      "Splunk",
+      "Jenkins"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "German (native)",
+      "English (fluent)",
+      "Arabic (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "Wit-Gele Kruis"
+    ],
+    "summary": "Java Software Craftsman with 4y experience, currently Backend Developer at Nike on SAP AFS to S4 migration with AWS (S3, SQS, DynamoDB, IoT Things) and Splunk; previously Java Developer at Wit-Gele Kruis."
+  },
+  "CAND-048": {
+    "id": "CAND-048",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Microsoft 365",
+      "Active Directory",
+      "Entra ID",
+      "Azure",
+      "SIEM/XDR (SentinelOne, Elastic, Wazuh)",
+      "DORA/NIS2/ISO27001",
+      "VMware",
+      "PowerShell"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "Italian (good)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "SerSo bvba",
+      "BKM nv",
+      "IPG Group (Telenet)"
+    ],
+    "summary": "Cybersecurity engineer with 5y dedicated cyber and 20+y overall IT experience, specialised in Microsoft security (AD/Entra/M365), SIEM/XDR implementation, DORA/NIS2/ISO27001 compliance and Blue/Red/Purple teaming."
+  },
+  "CAND-049": {
+    "id": "CAND-049",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Angular",
+      "Java",
+      "Spring Boot",
+      "Node.js",
+      "AWS",
+      "GraphQL",
+      "React.js",
+      "Apache Camel"
+    ],
+    "years_experience": 5,
+    "languages": [
+      "Dutch (native)",
+      "English (native)",
+      "French (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "Jidoka",
+      "InTouch",
+      "Enervalis",
+      "Eurofins Digital Testing"
+    ],
+    "summary": "Full-stack developer (~5y) currently at Nike on SAP S4 migration (Node SEC Simplification team) using Java/AWS DynamoDB/SQS/S3/React.js, with prior projects at Jidoka, InTouch, Enervalis (EV charging) and Eurofins payment integration."
+  },
+  "CAND-050": {
+    "id": "CAND-050",
+    "primary_role": "Architect",
+    "primary_stack": [
+      "Adobe Experience Manager (AEM)",
+      "Java",
+      "Spring Boot",
+      "AWS Cloud",
+      "JavaScript",
+      "RabbitMQ",
+      "Adobe Analytics",
+      "SAFE/Agile"
+    ],
+    "years_experience": 24,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)",
+      "German (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Liantis",
+      "IG.com",
+      "PGGM",
+      "Bridgestone",
+      "Yamaha Motor Europe",
+      "Argenta",
+      "KBC"
+    ],
+    "summary": "Senior AEM Architect / back-end developer with 24y experience and AEM Sites Architect Master + AWS Solutions Architect Associate certifications, leading Adobe Experience Cloud projects across retail, finance and automotive (IG, PGGM, Bridgestone, Yamaha, Argenta, KBC)."
+  },
+  "CAND-051": {
+    "id": "CAND-051",
+    "primary_role": "Cloud engineer",
+    "primary_stack": [
+      "Java 17",
+      "AWS (DynamoDB, SQS, S3, IoT Core, CloudFormation)",
+      "Adobe Experience Manager (AEM)",
+      "Spring",
+      "Kafka",
+      "Splunk",
+      "Jenkins",
+      "Apache Tomcat"
+    ],
+    "years_experience": 5,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "AG Insurance",
+      "Kylie Cosmetics",
+      "Coty",
+      "Atlas Copco",
+      "Capgemini"
+    ],
+    "summary": "Cloud Engineer / Java & AEM Developer (~5y) currently at Nike SEC SimplyFly team building AWS-based data integration plugins (S3/SQS/DynamoDB/Kafka), with prior AEM Cloud Service projects at AG Insurance, Kylie Cosmetics, Coty and Atlas Copco."
+  },
+  "CAND-052": {
+    "id": "CAND-052",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Adobe Experience Manager (AEM)",
+      "Java",
+      "JavaScript",
+      "HTL",
+      "Apache Sling",
+      "Angular",
+      "Cypress",
+      "SCSS"
+    ],
+    "years_experience": 2,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "German (basic)"
+    ],
+    "region": "Netherlands",
+    "regime": "employed",
+    "key_employers": [
+      "IG.com",
+      "Yamaha Motor Europe",
+      "PGGM",
+      "Defense/Security NDA"
+    ],
+    "summary": "Full-stack AEM developer (~2y) Dutch national, with Adobe AEM Sites Developer + Business Practitioner certifications, recent projects on AEMaaCS for defense/security org, IG.com modernization, Yamaha Adobe Campaign Standard and PGGM Cypress UI testing framework."
+  },
+  "CAND-053": {
+    "id": "CAND-053",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Scrum",
+      "PRINCE2",
+      "Agile/Kanban",
+      "Atlassian (Jira/Confluence/Bitbucket)",
+      "Microsoft Power Platform",
+      "AI Builder/Copilot Studio",
+      "Python",
+      "C/C++"
+    ],
+    "years_experience": 30,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum/we+",
+      "Digitaal Vlaanderen",
+      "Mapscape B.V.",
+      "Siemens VDO",
+      "Cisco",
+      "Ferranti Computer Systems"
+    ],
+    "summary": "Senior Project Manager / Scrum Master with 30y experience including 15+ years on automotive navigation/HD-maps projects at Mapscape, currently at Privatum/we+ building Power Platform / Copilot Studio recruitment data flows and contributing to NIS2 compliance assessments."
+  },
+  "CAND-054": {
+    "id": "CAND-054",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO27001",
+      "GDPR",
+      "NIS2/Cyfun",
+      "NIST",
+      "OWASP",
+      "Information Security Governance",
+      "DPIA/DPA",
+      "IAM"
+    ],
+    "years_experience": 32,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (advanced)",
+      "German (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "District09",
+      "Privatum",
+      "ICASA Group",
+      "EVO-Soft",
+      "Philips Interactive Media Centre"
+    ],
+    "summary": "Senior Security Officer / DPO and CEO of Privatum (born 1971) with 32y experience, currently CISO at District09, ISO27001 Lead Implementer with broad governance/risk/privacy background after early career in software development and sales/account management."
+  },
+  "CAND-039": {
+    "id": "CAND-039",
+    "primary_role": "Data engineer/scientist",
+    "primary_stack": [
+      "Python",
+      "SQL",
+      "R",
+      "ArcGIS",
+      "QGIS",
+      "PostgreSQL",
+      "Power BI",
+      "Google Earth Engine"
+    ],
+    "years_experience": 5,
+    "languages": [
+      "English (fluent)",
+      "French (intermediate)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "unknown",
+    "key_employers": [
+      "Ghent University",
+      "University of Portsmouth",
+      "NM Geospatial"
+    ],
+    "summary": "Water Resource Management & GIS specialist with MSc in Sustainable Land Management (UGent), 5y experience in Python data analysis, geospatial modeling and remote sensing applied to environmental and hydrological assessments."
+  }
+}

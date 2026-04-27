@@ -1,0 +1,41 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Private data — NEVER commit
+mapping-private.json
+data/cvs/_meta-batch-*.jsonl
+*.zip
+/raw-cvs/
+/raw-vacancies/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.python-version
+*.egg-info/
+dist/
+build/
+.uv/
+
+# Node
+node_modules/
+*.tsbuildinfo
+.next/
+.nuxt/
+out/
+.turbo/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Local outputs
+output/
+results/
+*.local.json
