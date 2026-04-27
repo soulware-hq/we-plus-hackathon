@@ -9,21 +9,24 @@ You're building an **AI-powered candidate matcher**: given a real WE+ vacancy, s
 ## Quick start (5 min)
 
 ```bash
-# 1. Fork or clone (pick one)
-gh repo fork soulware-hq/we-plus-hackathon --clone
-# or
-git clone https://github.com/soulware-hq/we-plus-hackathon.git
+# 1. Clone (you've been added as a collaborator)
+git clone git@github.com:soulware-hq/we-plus-hackathon.git
+cd we-plus-hackathon
 
 # 2. Pick a scaffold (or roll your own)
-cd we-plus-hackathon/scaffolds/python  # or scaffolds/node
+cd scaffolds/python  # or scaffolds/node
 
 # 3. Set the API key
-cp ../../.env.example .env
-# edit .env, paste ANTHROPIC_API_KEY
+cp ../../.env.example ../../.env
+# edit ../../.env, paste ANTHROPIC_API_KEY
 
 # 4. Run the starter
-make run   # python: uv run match.py | node: bun run match.ts
+uv run match.py VAC-001        # python
+# or
+bun install && bun run match.ts VAC-001   # node
 ```
+
+> Working in your own repo? Push to a personal private repo, **not** a public one. The data must not become public. See [`PRIVACY.md`](PRIVACY.md).
 
 Look at the data first:
 
