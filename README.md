@@ -8,6 +8,8 @@ You're building an **AI-powered candidate matcher**: given a real WE+ vacancy, s
 
 ## Quick start (5 min)
 
+This is a **private** repo. Forks are disabled at the org level → just **clone** and work in your local copy.
+
 ```bash
 # 1. Clone (you've been added as a collaborator)
 git clone git@github.com:soulware-hq/we-plus-hackathon.git
@@ -26,7 +28,7 @@ uv run match.py VAC-001        # python
 bun install && bun run match.ts VAC-001   # node
 ```
 
-> Working in your own repo? Push to a personal private repo, **not** a public one. The data must not become public. See [`PRIVACY.md`](PRIVACY.md).
+**Need to share work back?** Push a branch to this repo (`git push origin your-crew-name`), or copy *code only* (never `data/`) to a personal private repo. **Never push the data publicly.** See [`PRIVACY.md`](PRIVACY.md).
 
 Look at the data first:
 
