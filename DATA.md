@@ -2,9 +2,9 @@
 
 ## Client requests (`data/vacancies/`)
 
-**11 real partner-intake requests** as forwarded by Ellen Mollen (HR & Business Director, Privatum) on 2026-04-27.
+**11 real partner-intake requests** as forwarded by the WE+ partner team on 2026-04-27.
 
-> ⚠️ **These are NOT vacatures from we-plus.be.** Ellen explicitly clarified that real WE+ matching happens against **incoming client requests** from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...) — not against jobs posted on the WE+ website. We swapped the dataset accordingly on hackathon day 1.
+> ⚠️ **These are NOT vacatures from we-plus.be.** the partner team explicitly clarified that real WE+ matching happens against **incoming client requests** from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...) — not against jobs posted on the WE+ website. We swapped the dataset accordingly on hackathon day 1.
 
 | ID | Title | Region / End client | Stack focus |
 |----|-------|---------------------|-------------|
@@ -110,9 +110,9 @@ Index file: `data/cvs/index.json` — an aggregated map of all 54 candidates wit
 ## Re-running the dataset
 
 The pipeline that produced `data/`:
-1. Source CVs: `~/Downloads/CV's.zip` (zipped raw .docx + .pdf, never committed) — 28.7 MB WeTransfer from Ellen Mollen, 2026-04-27.
+1. Source CVs: `~/Downloads/CV's.zip` (zipped raw .docx + .pdf, never committed) — 28.7 MB WeTransfer from the WE+ team, 2026-04-27.
 2. Extract markdown via `markitdown` (Microsoft, `pip install markitdown[docx]`).
 3. Anonymize via Claude (Opus subagents) using rules in `scripts/anonymize/` (TODO: ship script).
-4. Client requests: forwarded by Ellen Mollen on 2026-04-27 via Koen as 7 .eml + 5 .docx attachments. Extracted directly into `data/vacancies/VAC-XXX.md`.
+4. Client requests: forwarded by the WE+ team on 2026-04-27 via Koen as 7 .eml + 5 .docx attachments. Extracted directly into `data/vacancies/VAC-XXX.md`.
 
 If WE+ adds more candidates / requests, the pipeline can re-run.

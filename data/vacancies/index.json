@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "source": "Privatum partner intake — forwarded by Ellen Mollen 2026-04-27",
-    "note": "These are the actual client requests WE+/Privatum receives from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...). They replace the 5 we-plus.be website vacancies that were originally pulled via the HR-Technologies API — Ellen explicitly clarified that matching must happen on these intake requests, not on website job posts."
+    "source": "Privatum partner intake — forwarded by the WE+ team 2026-04-27",
+    "note": "These are the actual client requests WE+/Privatum receives from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...). They replace the 5 we-plus.be website vacancies that were originally pulled via the HR-Technologies API — the partner team explicitly clarified that matching must happen on these intake requests, not on website job posts."
   },
   "VAC-001": {
     "title": "Test Engineer (Selenium, urgent)",

@@ -15,7 +15,7 @@ Crew design rule: **mix specialities, don't sort by role.** Every crew has 1 dai
 - Akram (Java BE, Nike SAP S4)
 - Lieven (FE/UX-leaning)
 
-**Edge:** strongest grasp of the operator pain. Skip the abstract design — translate Jody's actual ChatGPT prompt straight into code.
+**Edge:** strongest grasp of the operator pain. Skip the abstract design — translate the Sales lead's actual ChatGPT prompt straight into code.
 
 ---
 

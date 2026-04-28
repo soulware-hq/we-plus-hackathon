@@ -7,7 +7,7 @@
 
 ## The pain (in WE+'s own words)
 
-> "A request comes in via Connecting Expertise. We have 2-3 days to respond. I copy the request text into ChatGPT, paste in 5 candidate CVs, ask 'who's the top 2?', generate a motivation text, edit it, send. Five other consultancies are doing the same. Speed matters. Quality matters." — Jody, Sales
+> "A request comes in via Connecting Expertise. We have 2-3 days to respond. I copy the request text into ChatGPT, paste in 5 candidate CVs, ask 'who's the top 2?', generate a motivation text, edit it, send. Five other consultancies are doing the same. Speed matters. Quality matters." — WE+ Sales lead
 
 > "We get 20-25 requests a day. Most are no-match. Each still needs to be evaluated." — Sales lead
 
@@ -94,7 +94,7 @@ From the operator interviews (full transcripts in WE+ briefing materials):
 
 ## Hint: the de-facto spec
 
-Jody's manual ChatGPT prompt is the de-facto spec. We don't have it written down (yet — Koen is asking him). If it lands during the hackathon, it'll drop in Discord. Until then: build what *you'd* want as a recruiter looking at 54 CVs and 5 vacancies.
+The Sales lead's manual ChatGPT prompt is the de-facto spec. We don't have it written down (yet — Koen is collecting it). If it lands during the hackathon, it'll drop in Discord. Until then: build what *you'd* want as a recruiter looking at 54 CVs and 5 vacancies.
 
 ---
 

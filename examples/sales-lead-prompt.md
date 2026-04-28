@@ -1,8 +1,8 @@
-# Jody's prompt (the de-facto spec)
+# Sales-lead prompt (the de-facto spec)
 
-This is what Jody (Sales lead at WE+) currently does manually with personal-paid ChatGPT for every incoming vacancy. **It's the closest thing to a written spec we have.**
+This is what the WE+ Sales lead currently does manually with personal-paid ChatGPT for every incoming vacancy. **It's the closest thing to a written spec we have.**
 
-> ⚠️ Status: **placeholder** — Koen is asking Jody for the actual prompt. If/when it lands, it'll drop in the Discord `#starter-prompts` channel and replace this file.
+> ⚠️ Status: **placeholder** — Koen is asking the Sales lead for the actual prompt. If/when it lands, it'll drop in the Discord `#starter-prompts` channel and replace this file.
 
 ---
 
