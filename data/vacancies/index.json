@@ -1,54 +1,107 @@
 {
+  "_meta": {
+    "source": "Privatum partner intake — forwarded by Ellen Mollen 2026-04-27",
+    "note": "These are the actual client requests WE+/Privatum receives from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...). They replace the 5 we-plus.be website vacancies that were originally pulled via the HR-Technologies API — Ellen explicitly clarified that matching must happen on these intake requests, not on website job posts."
+  },
   "VAC-001": {
-    "title": "Java developer",
-    "region": "Vlaanderen",
-    "contract_types": [
-      "Intern"
-    ],
-    "work_regimes": [],
-    "is_freelance": false,
-    "internal_id": 175
+    "title": "Test Engineer (Selenium, urgent)",
+    "region": "Antwerpen",
+    "language": "NL",
+    "duration": "min. 1 jaar",
+    "start": "april 2026",
+    "urgency": "superdringend",
+    "is_freelance": null
   },
   "VAC-002": {
-    "title": "Cloud engineer (Freelance)",
-    "region": "Vlaanderen",
-    "contract_types": [],
-    "work_regimes": [],
-    "is_freelance": true,
-    "internal_id": 226
+    "title": "Lead Analist (Microsoft, Antwerpen)",
+    "region": "Antwerpen",
+    "language": "NL",
+    "duration": "tot eind 2025",
+    "start": "sept/okt",
+    "is_freelance": null
   },
   "VAC-003": {
-    "title": "Java developer (FL)",
-    "region": "Vlaanderen",
-    "contract_types": [
-      "Intern"
-    ],
-    "work_regimes": [],
-    "is_freelance": true,
-    "internal_id": 225
+    "title": "Senior Project Manager (Toyota PMO)",
+    "language": "EN (NL plus)",
+    "is_freelance": null
   },
   "VAC-004": {
-    "title": "Cloud-native developer",
-    "region": "Vlaanderen",
-    "contract_types": [
-      "Onbepaalde duur"
-    ],
-    "work_regimes": [
-      "Voltijds"
-    ],
-    "is_freelance": false,
-    "internal_id": 9
+    "title": "Functioneel Analist (Field Service Management, Hasselt)",
+    "region": "Hasselt",
+    "language": "NL",
+    "duration": "~3 maanden, kan verlengd worden",
+    "start": "asap",
+    "regime": "(quasi) fulltime, on-site",
+    "urgency": "dringend",
+    "is_freelance": null
   },
   "VAC-005": {
-    "title": "Devops Engineer",
-    "region": "Vlaanderen",
-    "contract_types": [
-      "Onbepaalde duur"
-    ],
-    "work_regimes": [
-      "Voltijds"
-    ],
-    "is_freelance": false,
-    "internal_id": 7
+    "title": "Data Privacy Analyst (Engie)",
+    "end_client": "Engie",
+    "sourcing_partner": "Atmoz Consult",
+    "start": "asap",
+    "end": "31/12/2025 (kans op verlenging)",
+    "is_freelance": null
+  },
+  "VAC-006": {
+    "title": "Junior/Medior DPO (NIS2, Vlaamse Overheid)",
+    "end_client": "Vlaamse Overheid (NIS2 traject)",
+    "sourcing_partner": "Atmoz Consult",
+    "language": "NL C2",
+    "duration": "~25 dagen tot einde jaar",
+    "start": "asap",
+    "is_freelance": null
+  },
+  "VAC-007": {
+    "title": "Senior Java Developer (MAGDA, Eigen Vermogen Digitaal Vlaanderen)",
+    "end_client": "Digitaal Vlaanderen",
+    "client_ref": "Ontwikkelaar (JAVA) Senior — Perceel 1",
+    "language": "NL C2",
+    "start": "16/03/2026",
+    "end": "15/07/2027",
+    "contract_type": "Raamcontract 2022 - 2027 (Lot 1)",
+    "is_freelance": null
+  },
+  "VAC-008": {
+    "title": "Junior IT Security Consultant (Solvus / Qualys)",
+    "end_client": "Solvus",
+    "language": "EN (FR/NL plus)",
+    "start": "15/07/2024",
+    "end": "31/12/2024",
+    "contract_type": "Time & Material",
+    "location": "Hybrid — 2d on-site Brussels Center / 3d remote",
+    "is_freelance": null
+  },
+  "VAC-009": {
+    "title": "Medior Full Stack Java Developer (Departement Omgeving — ApoCow)",
+    "end_client": "Departement Omgeving (Vlaamse Overheid)",
+    "client_ref": "ApoCow",
+    "language": "NL C2",
+    "start": "18/05/2026",
+    "end": "31/12/2026",
+    "contract_type": "Raamcontract 2022 - 2027 (Lot 1)",
+    "location": "Brussel — min. 2 dagen op kantoor",
+    "is_freelance": null
+  },
+  "VAC-010": {
+    "title": "Senior Java Developer (VLABEL — Vlaams Fiscaal Platform)",
+    "end_client": "Vlaamse Belastingdienst (VLABEL)",
+    "client_ref": "VLABEL_JAVA_2026",
+    "language": "NL C2",
+    "start": "01/06/2026",
+    "end": "31/05/2027",
+    "contract_type": "Raamcontract 2022 - 2027 (Lot 1)",
+    "is_freelance": null
+  },
+  "VAC-011": {
+    "title": "CISO Security Architect (Ypto)",
+    "end_client": "Ypto (NMBS Group)",
+    "client_ref": "YPR9848",
+    "language": "EN + FR/NL",
+    "start": "18/05/2026",
+    "end": "31/12/2026",
+    "contract_type": "Time & Material",
+    "location": "2 days on-site per week",
+    "is_freelance": null
   }
 }

@@ -1,23 +1,31 @@
 # DATA — what's in `data/`
 
-## Vacancies (`data/vacancies/`)
+## Client requests (`data/vacancies/`)
 
-5 real WE+ vacancies, pulled from the live HR-Technologies API on 2026-04-27.
+**11 real partner-intake requests** as forwarded by Ellen Mollen (HR & Business Director, Privatum) on 2026-04-27.
 
-| ID | Title | Region | Regime |
-|----|-------|--------|--------|
-| VAC-001 | Java developer | Vlaanderen | Intern (employed) |
-| VAC-002 | Cloud engineer (Freelance) | Vlaanderen | Freelance |
-| VAC-003 | Java developer (FL) | Vlaanderen | Freelance |
-| VAC-004 | Cloud-native developer | Vlaanderen | Intern (employed) |
-| VAC-005 | DevOps Engineer | Vlaanderen | Intern (employed) |
+> ⚠️ **These are NOT vacatures from we-plus.be.** Ellen explicitly clarified that real WE+ matching happens against **incoming client requests** from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...) — not against jobs posted on the WE+ website. We swapped the dataset accordingly on hackathon day 1.
 
-Each vacancy has three sections lifted from the original posting:
+| ID | Title | Region / End client | Stack focus |
+|----|-------|---------------------|-------------|
+| VAC-001 | Test Engineer (Selenium, urgent) | Antwerpen | Test, Selenium, ISTQB |
+| VAC-002 | Lead Analist | Antwerpen | Microsoft, BA, Proxy PO |
+| VAC-003 | Senior Project Manager | Toyota PMO | Waterfall, MS Project |
+| VAC-004 | Functioneel Analist | Hasselt (on-site) | Field service, BA |
+| VAC-005 | Data Privacy Analyst | Engie | DPIA, Data Protection Register |
+| VAC-006 | Junior/Medior DPO (NIS2) | Vlaamse Overheid | ISO 27001, NIS2 |
+| VAC-007 | Senior Java Developer | Digitaal Vlaanderen (MAGDA) | Java, Spring, Kafka |
+| VAC-008 | Junior IT Security Consultant | Solvus | Qualys, ServiceNow |
+| VAC-009 | Medior Full Stack Java | Departement Omgeving (ApoCow) | Java, JS, Spring |
+| VAC-010 | Senior Java Developer | VLABEL (Vlaams Fiscaal Platform) | Java, Vaadin, Oracle |
+| VAC-011 | CISO Security Architect | Ypto (NMBS Group) | Cybersec architecture |
+
+Each request has at least:
 - **Description** — what the role is
-- **Profile** — what they need from you
-- **Offer** — what WE+ offers
+- **Required skills** — must-have / should-have / nice-to-have
+- **Context** — about the end client / mission, where present in the source
 
-Index file: `data/vacancies/index.json`.
+Index file: `data/vacancies/index.json` — includes a `_meta.note` documenting the swap.
 
 ---
 
@@ -77,7 +85,7 @@ Index file: `data/cvs/index.json` — an aggregated map of all 54 candidates wit
 
 **Regions:** Limburg (14) · Antwerpen (13) · Vlaams-Brabant (9) · Oost-Vlaanderen (5) · Brussel (4) · others (9)
 
-> ⚠️ **The pool is heavy on Privacy/Security + PM/PO**, light on hands-on developers. The 5 vacancies are dev-heavy. Some vacancies will have only a handful of strong matches — that's realistic, that's the actual WE+ situation.
+> ⚠️ **The pool is heavy on Privacy/Security + PM/PO**, light on hands-on developers. The 11 requests cover Java (4), Security/DPO (3), BA/PM (3), and Test (1) — much closer to the real intake mix than the 5 dev-only vacatures we started with. Some requests will still have only a handful of strong matches — that's realistic, that's the actual WE+ situation.
 
 ---
 
@@ -102,9 +110,9 @@ Index file: `data/cvs/index.json` — an aggregated map of all 54 candidates wit
 ## Re-running the dataset
 
 The pipeline that produced `data/`:
-1. Source: `~/Downloads/CV's.zip` (zipped raw .docx + .pdf, never committed)
-2. Extract markdown via `markitdown` (Microsoft, `pip install markitdown[docx]`)
-3. Anonymize via Claude (Opus subagents) using rules in `scripts/anonymize/` (TODO: ship script)
-4. Vacancies pulled from `https://api.hr-technologies.com/v1/vacancies` with `X-Client-UUID: e45f3c39-d3d8-4a13-b694-36969ba6f4e6`
+1. Source CVs: `~/Downloads/CV's.zip` (zipped raw .docx + .pdf, never committed) — 28.7 MB WeTransfer from Ellen Mollen, 2026-04-27.
+2. Extract markdown via `markitdown` (Microsoft, `pip install markitdown[docx]`).
+3. Anonymize via Claude (Opus subagents) using rules in `scripts/anonymize/` (TODO: ship script).
+4. Client requests: forwarded by Ellen Mollen on 2026-04-27 via Koen as 7 .eml + 5 .docx attachments. Extracted directly into `data/vacancies/VAC-XXX.md`.
 
-If WE+ adds more candidates / vacancies, the pipeline can re-run.
+If WE+ adds more candidates / requests, the pipeline can re-run.

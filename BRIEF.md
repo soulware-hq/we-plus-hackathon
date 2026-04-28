@@ -7,9 +7,9 @@
 
 ## The pain (in WE+'s own words)
 
-> "A vacancy comes in via Connecting Expertise. We have 2-3 days to respond. I copy the vacancy text into ChatGPT, paste in 5 candidate CVs, ask 'who's the top 2?', generate a motivation text, edit it, send. Five other consultancies are doing the same. Speed matters. Quality matters." — Jody, Sales
+> "A request comes in via Connecting Expertise. We have 2-3 days to respond. I copy the request text into ChatGPT, paste in 5 candidate CVs, ask 'who's the top 2?', generate a motivation text, edit it, send. Five other consultancies are doing the same. Speed matters. Quality matters." — Jody, Sales
 
-> "We get 20-25 vacancies a day. Most are no-match. Each still needs to be evaluated." — Sales lead
+> "We get 20-25 requests a day. Most are no-match. Each still needs to be evaluated." — Sales lead
 
 > "LinkedIn search → 400 generic InMails → 7 follow-ups → maybe a phone call. Near-zero quality candidates this way." — Yoni, Recruiter
 
@@ -20,8 +20,8 @@ The **manual matching** step is the bottleneck. That's what you're attacking.
 ## The flow you're building
 
 ```
-[Vacancy text]   →   [Match]   →   [Ranked shortlist]
-  (one of 5)         (your AI)      (top 3–5 of 54)
+[Request text]   →   [Match]   →   [Ranked shortlist]
+  (one of 11)        (your AI)      (top 3–5 of 54)
                                          │
                                          └─→ each candidate has:
                                              • match score (0–1)
@@ -43,7 +43,7 @@ Per session, the win condition shifts:
 Run `your-tool VAC-001` → get a ranked list of CAND-IDs with reasons. Doesn't have to be perfect, has to *work end-to-end*.
 
 **Pass criteria:**
-- Reads the vacancy markdown
+- Reads the request markdown
 - Reads the 54 CVs
 - Outputs a ranked list (terminal, file, web — anything)
 - Each entry has a reason a recruiter could read
@@ -65,10 +65,10 @@ Run `your-tool VAC-001` → get a ranked list of CAND-IDs with reasons. Doesn't 
 From the operator interviews (full transcripts in WE+ briefing materials):
 
 **Hard filters** (no match if missing):
-- Main tech stack (e.g. Java + Spring Boot for VAC-001)
-- Language requirement (most vacancies need Dutch)
-- Regime (freelance vs. employed — vacancy specifies)
-- Region (some vacancies are region-specific)
+- Main tech stack (e.g. Java + Spring Boot for VAC-007/VAC-009/VAC-010, Selenium for VAC-001)
+- Language requirement (most requests need Dutch C2; some accept English-only — read the request)
+- Regime (freelance vs. employed — request usually specifies)
+- Region / on-site days (e.g. VAC-004 is on-site Hasselt, VAC-008 is hybrid Brussels 2/3)
 
 **Soft signal** (weight, don't gate):
 - Years per skill

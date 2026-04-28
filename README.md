@@ -2,7 +2,7 @@
 
 Starter pack for the **WE+ × Soulware AI hackathon** (Hasselt, 2026-04-28 / 30 / 05-02).
 
-You're building an **AI-powered candidate matcher**: given a real WE+ vacancy, surface the top consultants from the WE+ pool, with reasoning the user can trust.
+You're building an **AI-powered candidate matcher**: given a real WE+/Privatum **client request**, surface the top consultants from the WE+ pool, with reasoning the user can trust.
 
 ---
 
@@ -33,7 +33,7 @@ bun install && bun run match.ts VAC-001   # node
 Look at the data first:
 
 ```bash
-ls data/vacancies/   # 5 real WE+ vacancies (VAC-001…005)
+ls data/vacancies/   # 11 real client requests (VAC-001…011)
 ls data/cvs/         # 54 anonymized consultant CVs (CAND-001…054)
 cat data/cvs/index.json | jq '.["CAND-042"]'
 ```
@@ -48,7 +48,7 @@ cat data/cvs/index.json | jq '.["CAND-042"]'
 | [`PRIVACY.md`](PRIVACY.md) | GDPR + data-handling rules. **Read before you run anything.** |
 | [`DATA.md`](DATA.md) | Dataset description (sources, schema, known caveats) |
 | [`CREWS.md`](CREWS.md) | 8 crews × anchor + members + edge |
-| `data/vacancies/` | 5 real WE+ vacancies (Java, Cloud, DevOps) — pulled from we-plus.be |
+| `data/vacancies/` | 11 real client requests (Java, Security, BA/PM, Test) — Privatum partner intake |
 | `data/cvs/` | 54 anonymized consultant CVs from the WE+ pool |
 | `scaffolds/python/` | `uv` + `anthropic` SDK starter |
 | `scaffolds/node/` | `bun` + `@anthropic-ai/sdk` starter |
@@ -58,7 +58,7 @@ cat data/cvs/index.json | jq '.["CAND-042"]'
 
 ## The task (TL;DR)
 
-> A vacancy comes in. The crew has 30 minutes. Build something that, given a vacancy, returns a **ranked shortlist of candidates** (top 3–5) with a **reason** for each match — useful enough that a recruiter would actually use it.
+> A client request comes in. The crew has 30 minutes. Build something that, given a request, returns a **ranked shortlist of candidates** (top 3–5) with a **reason** for each match — useful enough that a recruiter would actually use it.
 
 Full brief in [`BRIEF.md`](BRIEF.md).
 
