@@ -1,0 +1,2606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentMatch · WE+</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#00B8D4;--secondary:#0B132B;--cta:#F9A825;
+  --bg:#fcfcfc;--surface:#FFFFFF;--text:#0B132B;--muted:#64748B;
+  --border:rgba(0, 0, 0, 0.08);--error:#FF5252;--warn:#F59E0B;
+  --sidebar:320px;--header:64px;--r:16px;--rs:12px;--t:200ms ease;
+}
+body{font-family:'Inter',sans-serif;background-color: #fcfcfc;color: #0F172A;height:100vh;overflow:hidden;font-size:14px;line-height:1.5}
+h1, h2, h3, h4, .vd-title, .modal-ttl, .hdr-logo { font-family: 'Outfit', sans-serif; }
+/* ── Header ── */
+.hdr{position:fixed;top:0;left:0;right:0;height:var(--header);background:rgba(255, 255, 255, 0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;z-index:50;gap:12px}
+.hdr-logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--secondary);letter-spacing:-0.02em}
+.hdr-img{height:36px;width:auto;display:block;filter:drop-shadow(0 0 4px rgba(0,0,0,0.1))}
+.hdr-div{width:1px;height:20px;background:var(--border)}
+.hdr-sub{font-size:12px;color:var(--muted);font-weight:500}
+.hdr-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.hdr-stat{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.hdr-stat strong{color:var(--text);font-weight:600}
+/* ── Layout ── */
+.layout{display:flex;height:100vh;padding-top:var(--header)}
+/* ── Sidebar ── */
+.sidebar{width:var(--sidebar);min-width:var(--sidebar);border-right:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:14px;border-bottom:1px solid var(--border)}
+.sb-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.sb-search{position:relative}
+.sb-search input{width:100%;height:40px;border:1px solid var(--border);border-radius:var(--rs);padding:0 12px 0 40px;font-family:inherit;font-size:13px;color:var(--text);background:rgba(0,0,0,0.03);outline:none;transition:all var(--t)}
+.sb-search input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(0, 184, 212, 0.1)}
+.sb-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.sb-list{flex:1;overflow-y:auto;padding:8px}
+.vc{padding:11px;border-radius:var(--rs);cursor:pointer;border:1px solid transparent;transition:background var(--t),border-color var(--t);margin-bottom:3px}
+.vc:hover{background:rgba(255,255,255,0.03)}
+.vc.active{background:rgba(0, 184, 212, 0.08);border-color:var(--primary)}
+.vc-top{display:flex;align-items:flex-start;gap:7px;margin-bottom:5px}
+.vc-id{font-size:10px;font-weight:600;color:var(--muted);background:rgba(0,0,0,0.05);padding:2px 5px;border-radius:4px;white-space:nowrap;margin-top:1px;flex-shrink:0}
+.vc-title{font-size:12px;font-weight:600;color:var(--text);line-height:1.3}
+.vc-meta{display:flex;flex-wrap:wrap;gap:3px}
+/* ── Badges ── */
+.bdg{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:6px;letter-spacing:0.02em}
+.bdg-region{background:rgba(148, 163, 184, 0.1);color:#94A3B8}
+.bdg-urgent{background:rgba(255, 82, 82, 0.1);color:#FF5252}
+.bdg-dringend{background:rgba(255, 215, 64, 0.1);color:#FFD740}
+.bdg-lang{background:rgba(0, 229, 255, 0.1);color:var(--primary)}
+.bdg-cat{background:rgba(0, 229, 255, 0.05);color:var(--primary)}
+.bdg-warn{background:rgba(255, 215, 64, 0.1);color:#FFD740;border:1px solid rgba(255, 215, 64, 0.3)}
+.bdg-err{background:rgba(255, 82, 82, 0.1);color:#FF5252;border:1px solid rgba(255, 82, 82, 0.3)}
+.bdg-ok{background:rgba(0, 229, 255, 0.1);color:var(--primary);border:1px solid rgba(0, 229, 255, 0.3)}
+/* ── Main ── */
+.main{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:18px}
+/* ── Welcome ── */
+.welcome{flex:1;display:flex;flex-direction:column;gap:18px}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px}
+.stat-val{font-size:30px;font-weight:700;color:var(--primary);line-height:1;margin-bottom:4px}
+.stat-lbl{font-size:12px;color:var(--muted);font-weight:500}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.card-ttl{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.role-item{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.role-name{font-size:12px;width:150px;min-width:150px;font-weight:500}
+.role-track{flex:1;height:7px;background:var(--bg);border-radius:4px;overflow:hidden}
+.role-fill{height:100%;border-radius:4px}
+.role-n{font-size:11px;font-weight:600;color:var(--muted);width:20px;text-align:right}
+/* ── Vacancy detail ── */
+.vd-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.vd-hdr{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.vd-icon{width:46px;height:46px;border-radius:12px;background:rgba(0, 229, 255, 0.1);display:flex;align-items:center;justify-content:center;color:var(--primary);flex-shrink:0}
+.vd-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:5px}
+.vd-meta{display:flex;flex-wrap:wrap;gap:5px}
+.vd-body{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.skills-block h4{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{display:inline-flex;font-size:11px;font-weight:500;padding:3px 9px;border-radius:5px}
+.tag-must{background:rgba(255, 82, 82, 0.1);color:#FF5252;border:1px solid rgba(255, 82, 82, 0.2)}
+.tag-req{background:rgba(0, 229, 255, 0.1);color:var(--primary);border:1px solid rgba(0, 229, 255, 0.2)}
+.tag-opt{background:rgba(148, 163, 184, 0.1);color:#94A3B8;border:1px solid rgba(148, 163, 184, 0.2)}
+/* ── Filter info bar ── */
+.filter-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.filter-bar-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.filter-stat{font-size:12px;font-weight:600}
+.filter-stat.green{color:var(--cta)}
+.filter-stat.red{color:var(--error)}
+.filter-stat.gray{color:var(--muted)}
+.filter-rule{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 8px;color:var(--muted)}
+.filter-rule svg{flex-shrink:0}
+.btn-sync{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:6px 12px;border-radius:8px;background:var(--secondary);color:white;cursor:pointer;border:none;transition:all var(--t);box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+.btn-sync:hover{background:var(--primary);transform:translateY(-1px);box-shadow:0 4px 8px rgba(0,184,212,0.2)}
+.btn-sync:active{transform:translateY(0)}
+.btn-sync svg{width:14px;height:14px}
+/* ── Section header ── */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sec-title{font-size:15px;font-weight:700}
+.sec-sub{font-size:12px;color:var(--muted);margin-top:2px}
+/* ── Candidate grid (3 cards) ── */
+.cands-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+/* ── Candidate card ── */
+.cand-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;cursor:pointer;transition:border-color var(--t);position:relative}
+.cand-card:hover{border-color:var(--secondary)}
+.cand-card.llm-result{border-top:2px solid var(--cta)}
+.rank{position:absolute;top:13px;right:13px;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.r1{background:rgba(249, 168, 37, 0.15);color:#F9A825}
+.r2{background:rgba(148, 163, 184, 0.15);color:#94A3B8}
+.r3{background:rgba(205, 127, 50, 0.15);color:#CD7F32}
+.r4{background:rgba(148, 163, 184, 0.1);color:#94A3B8}
+.r5{background:rgba(148, 163, 184, 0.05);color:#64748B}
+/* ── Donut ── */
+.donut-wrap{position:relative;display:inline-block;flex-shrink:0}
+.donut-ring{transform:rotate(-90deg);transform-origin:center}
+.donut-bg{fill:none;stroke:var(--bg);stroke-width:6}
+.donut-prog{fill:none;stroke-width:6;stroke-linecap:round}
+.donut-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.donut-val{font-size:15px;font-weight:700;color:var(--text);line-height:1}
+.donut-pct{font-size:9px;color:var(--muted)}
+/* ── Score section ── */
+.score-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.cand-info{flex:1;min-width:0}
+.cand-name{font-size:13px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cand-role{font-size:11px;color:var(--primary);font-weight:500;margin-bottom:5px}
+.cand-quick{display:flex;flex-direction:column;gap:3px}
+.cq-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
+/* ── Breakdown bars ── */
+.breakdown{margin-bottom:11px}
+.br-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.br-lbl{font-size:10px;color:var(--muted);width:62px;font-weight:500}
+.br-track{flex:1;height:4px;background:var(--bg);border-radius:3px;overflow:hidden}
+.br-fill{height:100%;border-radius:3px}
+.f-skill{background:var(--primary)}
+.f-exp{background:var(--cta)}
+.f-ind{background:var(--warn)}
+.br-pct{font-size:10px;font-weight:600;color:var(--muted);width:28px;text-align:right}
+/* ── Skill tags ── */
+.sk-row{margin-bottom:8px}
+.sk-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.sk-tag{display:inline-flex;font-size:10px;font-weight:500;padding:2px 7px;border-radius:4px;margin:2px 2px 2px 0}
+.sk-match{background:rgba(0, 229, 255, 0.1);color:var(--primary);border:1px solid rgba(0, 229, 255, 0.2)}
+.sk-miss{background:rgba(255, 82, 82, 0.1);color:#FF5252;border:1px solid rgba(255, 82, 82, 0.2)}
+.sk-risk{background:rgba(255, 215, 64, 0.1);color:#FFD740;border:1px solid rgba(255, 215, 64, 0.2)}
+/* ── Reason / justification ── */
+.just{font-size:11px;color:var(--muted);line-height:1.55;padding-top:8px;border-top:1px solid var(--border)}
+/* ── JD Dropdown ── */
+.jd-expand{margin-top:12px;border:1px solid var(--border);border-radius:var(--rs);overflow:hidden;background:rgba(0,0,0,0.02)}
+.jd-trigger{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);transition:all var(--t)}
+.jd-trigger:hover{color:var(--primary);background:rgba(0,184,212,0.05)}
+.jd-content{padding:14px;font-size:12px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);display:none;background:var(--surface)}
+.jd-content p{margin-bottom:10px}
+.jd-content.show{display:block}
+.jd-arrow{transition:transform var(--t)}
+.jd-trigger.open .jd-arrow{transform:rotate(180deg)}
+/* ── Filtered out section ── */
+.filtered-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.filtered-toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted)}
+.filtered-toggle:hover{background:var(--bg)}
+.filtered-list{padding:0 16px 14px;display:none;gap:6px;flex-direction:column}
+.filtered-list.open{display:flex}
+.filtered-row{display:flex;align-items:center;gap:8px;font-size:11px;padding:6px 0;border-bottom:1px solid var(--border)}
+.filtered-row:last-child{border-bottom:none}
+.filtered-id{font-weight:600;color:var(--text);min-width:72px}
+.filtered-role{color:var(--muted);min-width:130px}
+.filtered-reason{color:var(--error);flex:1}
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 220ms ease}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ── Overlays / Modals ── */
+.overlay{position:fixed;inset:0;background:rgba(11, 19, 43, 0.4);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{background:var(--surface);border-radius:var(--r);width:100%;max-width:600px;max-height:84vh;overflow-y:auto;padding:24px}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.modal-ttl{font-size:16px;font-weight:700}
+.modal-close{width:30px;height:30px;border:1px solid var(--border);border-radius:7px;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:16px;transition:background var(--t)}
+.modal-close:hover{background:var(--bg)}
+.modal-section{margin-bottom:16px}
+.modal-section h4{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.modal-section p{font-size:13px;color:var(--text);line-height:1.6}
+.emp-list{display:flex;flex-wrap:wrap;gap:6px}
+.emp-tag{font-size:11px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:5px;padding:3px 9px}
+.btn-primary{height:36px;background:var(--primary);color:var(--secondary);border:none;border-radius:var(--rs);padding:0 18px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all var(--t)}
+.btn-primary:hover{background:var(--text);color:var(--secondary);box-shadow:0 0 15px rgba(0,229,255,0.4)}
+.sel-box{margin-top:16px;padding:14px;background:rgba(0,184,212,0.03);border:1px dashed var(--primary);border-radius:var(--rs)}
+.sel-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sel-title{font-size:12px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:0.05em}
+.sel-list{display:flex;flex-wrap:wrap;gap:6px;max-height:120px;overflow-y:auto;padding:2px}
+.sel-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 10px;background:var(--primary);color:var(--secondary);border-radius:6px;cursor:default}
+.sel-tag button{background:none;border:none;color:inherit;font:inherit;cursor:pointer;font-weight:700;font-size:14px;line-height:1;margin-left:2px}
+.pool-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background var(--t)}
+.pool-row:hover{background:var(--bg)}
+.pool-row input{cursor:pointer}
+.pool-info{flex:1}
+.pool-id{font-size:11px;font-weight:700;color:var(--muted)}
+.pool-role{font-size:12px;font-weight:600}
+.pool-list{max-height:400px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--rs);background:var(--surface)}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-logo">
+    <img src="public/WE+Logo-removebg-preview.png" alt="WE+" class="hdr-img">
+    TalentMatch
+  </div>
+  <div class="hdr-div"></div>
+  <span class="hdr-sub">Candidate · Vacancy Alignment</span>
+  <div class="hdr-right">
+    <div class="hdr-stat"><strong>54</strong> candidates</div>
+    <div class="hdr-stat"><strong>11</strong> vacancies</div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sb-head">
+      <div class="sb-label">Vacancies</div>
+      <div class="sb-search">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="sb-input" placeholder="Filter vacancies…" oninput="filterVacancies(this.value)">
+      </div>
+    </div>
+    <div class="sb-list" id="sb-list"></div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="welcome" id="welcome-screen">
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-val">54</div><div class="stat-lbl">Candidates in pool</div></div>
+        <div class="stat-card"><div class="stat-val">11</div><div class="stat-lbl">Open vacancies</div></div>
+        <div class="stat-card"><div class="stat-val">8</div><div class="stat-lbl">Role categories</div></div>
+        <div class="stat-card"><div class="stat-val" style="color:var(--error)">2</div><div class="stat-lbl">Urgent placements</div></div>
+      </div>
+      <div class="two-col">
+        <div class="chart-card"><div class="card-ttl">Candidate pool by role</div><div id="role-bars"></div></div>
+        <div class="chart-card"><div class="card-ttl">Vacancy overview by category</div><div id="vac-overview"></div></div>
+      </div>
+    </div>
+
+    <div id="vac-view" class="hidden">
+      <div id="mode-selector"></div>
+      <div id="candidates-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="vd-card" id="vd-detail"></div>
+        <div id="filter-info"></div>
+        <div>
+          <div class="sec-hdr">
+            <div>
+              <div class="sec-title">Top Candidates</div>
+              <div class="sec-sub" id="sec-sub">Ranked by match score — skill · experience · industry</div>
+            </div>
+            <div id="pool-badge" style="font-size:12px;color:var(--muted)"></div>
+          </div>
+          <div class="cands-grid" id="cands-grid"></div>
+        </div>
+        <div id="filtered-wrap"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Candidate detail modal -->
+<div class="overlay hidden" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-body"></div>
+</div>
+
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   CANDIDATE DATA (from data/cvs/index.json)
+═══════════════════════════════════════════════════════ */
+/* SYNC_MARKER:CANDIDATES_START */
+const CANDIDATES = {
+  "CAND-001": {
+    "id": "CAND-001",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Prince 2",
+      "MS Project",
+      "Jira",
+      "Confluence",
+      "Clarity",
+      "ServiceNow",
+      "Agile/Scrum",
+      "Waterfall"
+    ],
+    "years_experience": 28,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (basic)"
+    ],
+    "region": "Brussel",
+    "regime": "freelance",
+    "key_employers": [
+      "P&V",
+      "YPTO",
+      "Infrabel",
+      "Agentschap Integratie en Inburgering",
+      "Deutsche Bank Belgium"
+    ],
+    "summary": "Senior Project Manager with 28y experience in IT/infra projects across banking, public sector and railway; Prince 2 + Scrum Master certified."
+  },
+  "CAND-002": {
+    "id": "CAND-002",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Microsoft Dynamics 365 CE",
+      "Python",
+      "JavaScript",
+      "React",
+      "Angular",
+      "Vue.js",
+      "Azure",
+      "AWS"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "Freelance AI Consultant",
+      "NORRIQ BENELUX",
+      "Arinto",
+      "PEC"
+    ],
+    "summary": "Techno-functional consultant with 10y experience, currently freelance AI consultant; previously Dynamics 365 implementer and UI/UX dev."
+  },
+  "CAND-003": {
+    "id": "CAND-003",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "ISO27001",
+      "ISO27002",
+      "ISO27701",
+      "NIST CSF",
+      "DPIA"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "Arabic (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (good)"
+    ],
+    "region": "Antwerpen",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "Toreon BV"
+    ],
+    "summary": "Junior Data Privacy Advisor / DPO-aaS with legal background, 4y in GDPR consulting; CIPP, ISO Lead Implementer, Data Protection Auditor."
+  },
+  "CAND-004": {
+    "id": "CAND-004",
+    "primary_role": "Data engineer/scientist",
+    "primary_stack": [
+      "Python",
+      "Pandas",
+      "Scikit-learn",
+      "SQL",
+      "Tableau",
+      "QlikView",
+      "1C:Enterprise"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "English (Advanced)",
+      "Dutch (A1)",
+      "Russian (Near-Native)",
+      "Kyrgyz (Native)"
+    ],
+    "region": "Antwerpen",
+    "regime": "unknown",
+    "key_employers": [
+      "Gazprom Neft Asia",
+      "BishBeCreative",
+      "Freelance"
+    ],
+    "summary": "Junior data scientist with MSc Business Economics (Data Science) Antwerp; 10y mixed background in finance/budget analysis and data projects."
+  },
+  "CAND-005": {
+    "id": "CAND-005",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO 27001",
+      "NIS2",
+      "Splunk ES",
+      "CrowdStrike Falcon",
+      "Cisco IOS",
+      "Fortinet"
+    ],
+    "years_experience": 18,
+    "languages": [
+      "English (Fluent)",
+      "Dutch (B2)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "unknown",
+    "key_employers": [
+      "CS VISOR Germany",
+      "BC Foods",
+      "Ministry of Finance Turkey"
+    ],
+    "summary": "Information Security Officer with 18y experience, ISO 27001 Lead Auditor; transitioned from Turkish public sector to private cybersecurity. Extraction quality poor.",
+    "extraction_quality": "poor"
+  },
+  "CAND-006": {
+    "id": "CAND-006",
+    "primary_role": "Frontend developer",
+    "primary_stack": [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "Adobe Experience Manager",
+      "SCSS",
+      "Webpack",
+      "Next.js"
+    ],
+    "years_experience": 7,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Joyn",
+      "AG Insurance",
+      "Atlas Copco",
+      "Firestone Building Products EMEA",
+      "Bose",
+      "Janssen Pharmaceutica"
+    ],
+    "summary": "Lead Front End Developer with 7y experience in React/AEM at clients like Joyn (KBC), AG Insurance and Atlas Copco."
+  },
+  "CAND-007": {
+    "id": "CAND-007",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO 27001",
+      "NIS Directive",
+      "ISMS",
+      "GRC",
+      "DPO",
+      "CISO-as-a-Service"
+    ],
+    "years_experience": 30,
+    "languages": [
+      "French (native)",
+      "Dutch",
+      "English"
+    ],
+    "region": "Walloni\u00eb",
+    "regime": "freelance",
+    "key_employers": [
+      "Nezha Consulting",
+      "Cerba Research",
+      "ATOS Digital Security",
+      "Sopra Steria",
+      "Mielabelo",
+      "Crossroad Bank for Social Security"
+    ],
+    "summary": "CISO / Senior Information Security Consultant, 30y experience in social security, healthcare and railway sectors; ISO 27001 Senior Lead Implementer."
+  },
+  "CAND-008": {
+    "id": "CAND-008",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Prince 2",
+      "SCRUM",
+      "Agile",
+      "Waterfall",
+      "Lean Six Sigma",
+      "ITIL",
+      "PMO",
+      "PPM"
+    ],
+    "years_experience": 28,
+    "languages": [
+      "English (native)",
+      "German (native)",
+      "Dutch (business fluent)",
+      "French (conversational)"
+    ],
+    "region": "Belgium",
+    "regime": "freelance",
+    "key_employers": [
+      "T-Mobile",
+      "ista",
+      "essent",
+      "option",
+      "euroports",
+      "colruytgroup"
+    ],
+    "summary": "COO / Program Director / Operational Excellence Leader with 28y experience across Europe/USA/Asia; dual American-Belgian, NED and Business Angel."
+  },
+  "CAND-009": {
+    "id": "CAND-009",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "ISO 27001",
+      "ISO 27005",
+      "ISO 27701",
+      "NIS 2",
+      "DORA",
+      "DMA-DSA",
+      "DPIA"
+    ],
+    "years_experience": 9,
+    "languages": [
+      "French (native)",
+      "English (Professional)",
+      "Spanish (Professional)",
+      "Dutch (Basic)"
+    ],
+    "region": "Other",
+    "regime": "freelance",
+    "key_employers": [
+      "BEMS Conseil",
+      "Stellantis",
+      "Macopharma",
+      "Sienna IM",
+      "DBF Automobiles",
+      "Auchan Retail France"
+    ],
+    "summary": "External DPO / Senior GDPR Consultant since 2016, France-based with cross-border (FR/BE/ES/TR) projects across automotive, retail, pharma and HR sectors."
+  },
+  "CAND-010": {
+    "id": "CAND-010",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "ISO/IEC 27001",
+      "ISO/IEC 27002",
+      "Python",
+      "Cybersecurity",
+      "DPIA"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (very good)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "employed",
+    "key_employers": [
+      "Courtside.Law",
+      "Advocaat Debruyne",
+      "Sirius Legal",
+      "FEDNOT",
+      "Ordina NV",
+      "KBC Bank",
+      "DHL Express"
+    ],
+    "summary": "Lawyer Trainee specialising in IT/IP/Data Protection law combined with hands-on cybersecurity background (ISO 27001 auditor, KBC privacy officer)."
+  },
+  "CAND-011": {
+    "id": "CAND-011",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Java",
+      "Spring",
+      "AWS",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Go",
+      "TypeScript"
+    ],
+    "years_experience": 7,
+    "languages": [
+      "Dutch (Native)",
+      "English (Fluent)",
+      "German (Fluent)",
+      "French (Basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Vakantiehuis Fabiola vzw",
+      "WE+",
+      "FraktionX",
+      "Continuum - Jidoka",
+      "ABB",
+      "Enervalis",
+      "Cloudway",
+      "Toyota Motor Europe"
+    ],
+    "summary": "Full-stack developer with 7y experience across charging infrastructure (ABB), logistics (Directport) and cloud (Cloudway/AWS); recently joined WE+."
+  },
+  "CAND-012": {
+    "id": "CAND-012",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "OpenText Content Server",
+      "SAP",
+      "Kubernetes",
+      "Azure",
+      "Oracle 19c",
+      "BPM",
+      "Prince2",
+      "SQL"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (good)"
+    ],
+    "region": "Belgium",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "Colruyt",
+      "European Investment Bank",
+      "NMBS",
+      "European Central Bank",
+      "Deloitte",
+      "Transport NSW Australia"
+    ],
+    "summary": "Senior business/functional analyst and project manager, 25y in OpenText/ECM and SAP integration with international experience (EIB, ECB, Australia)."
+  },
+  "CAND-013": {
+    "id": "CAND-013",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "TIBCO",
+      "Calypso",
+      "SAP",
+      "J2EE",
+      "Unix",
+      "Microsoft Project",
+      "Agile/SAFe"
+    ],
+    "years_experience": 30,
+    "languages": [
+      "Dutch (Native)",
+      "English (Fluent)",
+      "French (Fluent)"
+    ],
+    "region": "Brussel",
+    "regime": "freelance",
+    "key_employers": [
+      "BNP Paribas",
+      "JPMC",
+      "ING",
+      "Deutsche Bank",
+      "Soci\u00e9t\u00e9 G\u00e9n\u00e9rale",
+      "Clearstream",
+      "Euroclear"
+    ],
+    "summary": "Senior programme manager with 30y in financial services across Europe; CEO of own apps venture; led major banking transformations (BNP Easy Banking, ING SCT, etc.)."
+  },
+  "CAND-014": {
+    "id": "CAND-014",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "NIS2",
+      "ISO 27001",
+      "Fortinet",
+      "Check Point",
+      "F5",
+      "Cisco",
+      "Palo Alto",
+      "Active Directory",
+      "O365"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch (fluent)",
+      "French (proficient)",
+      "English (proficient)",
+      "German (basic)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "Cyberlogics (own)",
+      "Nextiraone NV / Dimension Data",
+      "Avitour",
+      "APK Infra"
+    ],
+    "summary": "Freelance cybersecurity consultant, 20y experience in network/firewall security; NIS2 Lead Implementer, CISSP in training."
+  },
+  "CAND-015": {
+    "id": "CAND-015",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "NIS2",
+      "ISO 27k",
+      "NIST",
+      "OWASP",
+      "Penetration Testing",
+      "Kali Linux",
+      "Burp Suite",
+      "Splunk"
+    ],
+    "years_experience": 26,
+    "languages": [
+      "Dutch (Native)",
+      "English (Native)",
+      "French (Advanced)",
+      "German (Intermediate)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Sys Hax International",
+      "Digitaal Vlaanderen",
+      "ZLM Verzekeringen",
+      "VDAB",
+      "YPTO",
+      "Carrefour Belgium",
+      "KBC Bank",
+      "Argenta Bank",
+      "ING BANK",
+      "CEGEKA"
+    ],
+    "summary": "Principal Security Advisor and penetration tester with 26y experience as freelance CISO/architect across banking, retail and Flemish Government; CISSP, CISM, CISA, CRISC."
+  },
+  "CAND-016": {
+    "id": "CAND-016",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Penetration Testing",
+      "Network Security",
+      "Cisco",
+      "Active Directory",
+      "Windows Server",
+      "BackTrack",
+      "Nessus"
+    ],
+    "years_experience": 26,
+    "languages": [
+      "Dutch (Native)",
+      "English (Professional Working)",
+      "French (Limited Working)",
+      "German (Elementary)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "SYSHAX International",
+      "Zero Trust Security",
+      "Delitad (CRONOS)",
+      "Secutec",
+      "Devoteam",
+      "Belgacom",
+      "Ferranti Computer Systems"
+    ],
+    "summary": "Founder & CSO at Zero Trust Security; 26y in offensive security testing, penetration testing and network engineering. Likely overlap with CAND-015 (LinkedIn vs Privatum CV of same profile pattern)."
+  },
+  "CAND-017": {
+    "id": "CAND-017",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Jira",
+      "Confluence",
+      "SAFe",
+      "Scrum",
+      "Power BI",
+      "SQL",
+      "Python",
+      "BPMN"
+    ],
+    "years_experience": 8,
+    "languages": [
+      "Dutch (Native)",
+      "French (Native)",
+      "English (C2)"
+    ],
+    "region": "Brussel",
+    "regime": "freelance",
+    "key_employers": [
+      "ATOS",
+      "CERTIMED",
+      "ATLANCE",
+      "AXA"
+    ],
+    "summary": "Scrum Master / Business Analyst / PM with 8y experience; freelance for Walloon Government, MSc Data Science; SAFe 5.1 + PSM I certified."
+  },
+  "CAND-018": {
+    "id": "CAND-018",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Jira",
+      "Confluence",
+      "Adobe Experience Manager",
+      "Drupal",
+      "Sitecore",
+      "Figma",
+      "Adobe Photoshop",
+      "Sketch"
+    ],
+    "years_experience": 13,
+    "languages": [
+      "Dutch (Native)",
+      "English (Advanced)",
+      "French (Basic)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "employed",
+    "key_employers": [
+      "iO",
+      "Conundra",
+      "De Lijn",
+      "VRT",
+      "Telenet",
+      "Breex",
+      "Digipolis",
+      "Delhaize",
+      "VDAB"
+    ],
+    "summary": "Project Manager / Product Owner with UX/UI design background, 13y experience at iO, VRT (Branded Radio PO), Telenet (Atomic Design System) and Delhaize."
+  },
+  "CAND-019": {
+    "id": "CAND-019",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO27001",
+      "NIST",
+      "CISSP",
+      "Cyber Security",
+      "ITIL",
+      "ServiceNow",
+      "JIRA",
+      "Confluence"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (advanced)"
+    ],
+    "region": "West-Vlaanderen",
+    "regime": "freelance",
+    "key_employers": [
+      "Argenta",
+      "Atlas Copco",
+      "Carrefour Belgium",
+      "Proximus",
+      "BNP Paribas Fortis"
+    ],
+    "summary": "Senior security/privacy consultant with 20y experience in cyber security governance, risk management and compliance (ISO27001, NIST, GDPR) across banks and large enterprises."
+  },
+  "CAND-020": {
+    "id": "CAND-020",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Prince 2",
+      "Agile",
+      "Scrum",
+      "Jira",
+      "Confluence",
+      "Change Management",
+      "HP ALM"
+    ],
+    "years_experience": 15,
+    "languages": [
+      "Dutch",
+      "French",
+      "English",
+      "German"
+    ],
+    "region": "Antwerpen",
+    "regime": "unknown",
+    "key_employers": [
+      "LCM",
+      "Stater",
+      "Argenta",
+      "Delhaize",
+      "HP/EDS"
+    ],
+    "summary": "Senior program/project manager with 15y experience in change and stakeholder management at financial institutions, mutualities and Flemish Government."
+  },
+  "CAND-021": {
+    "id": "CAND-021",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO27001",
+      "GDPR",
+      "Business Continuity",
+      "Risk Management",
+      "NIST2",
+      "Crisis Management",
+      "DR",
+      "BCP"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "English (native)",
+      "Afrikaans (fluent)",
+      "Dutch (basic)",
+      "French (basic)"
+    ],
+    "region": "unknown",
+    "regime": "unknown",
+    "key_employers": [
+      "BeSecure (DHL)",
+      "Sopra Steria",
+      "BNP Paribas Fortis",
+      "Proximus",
+      "NBC Universal"
+    ],
+    "summary": "Senior Information Security/BCM consultant, 20y experience in ISO27001 implementation, GDPR and business continuity for global organisations."
+  },
+  "CAND-022": {
+    "id": "CAND-022",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "Oracle Applications",
+      "SQL",
+      "COBOL",
+      "XML",
+      "JIRA",
+      "Confluence",
+      "UML",
+      "BPMN"
+    ],
+    "years_experience": 31,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "German (basic)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "freelance",
+    "key_employers": [
+      "Smals",
+      "Solidaris",
+      "UWV",
+      "QNH",
+      "KT-scholengroep"
+    ],
+    "summary": "Functional/data analyst with 31y experience, recent work at Smals (Vlaamse Sociale Bescherming) and Solidaris on healthcare/social-security applications."
+  },
+  "CAND-023": {
+    "id": "CAND-023",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "NIS2",
+      "DORA",
+      "ISO 27001",
+      "Cybersecurity Governance",
+      "SOC",
+      "IAM",
+      "DRP/BCDR",
+      "RGPD"
+    ],
+    "years_experience": 9,
+    "languages": [
+      "English (bilingual)",
+      "French (bilingual)",
+      "Arabic (native)"
+    ],
+    "region": "Other",
+    "regime": "employed",
+    "key_employers": [
+      "Devoteam",
+      "Cr\u00e9dit Agricole CA-CIB",
+      "CNAM",
+      "Dubbing Brothers",
+      "OPCO Atlas"
+    ],
+    "summary": "International CISO/RSSI with 9y experience in cybersecurity governance, NIS2/DORA compliance and BCDR programmes across finance, public sector and media."
+  },
+  "CAND-024": {
+    "id": "CAND-024",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "SAP S4 Hana",
+      "Python",
+      "SQL",
+      "Jira",
+      "Confluence",
+      "Lucid",
+      "Miro",
+      "AWS"
+    ],
+    "years_experience": 10,
+    "languages": [
+      "Dutch (native)",
+      "English (native)",
+      "French (basic)",
+      "German (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "DataStories",
+      "DAF Trucks",
+      "IPTE Factory Automation"
+    ],
+    "summary": "Functional analyst/Product Manager with 10y experience, currently at Nike on SAP S4 Hana migration; background in data engineering and industrial automation."
+  },
+  "CAND-025": {
+    "id": "CAND-025",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "Infor LN",
+      "Baan",
+      "ERP",
+      "WMS",
+      "MES",
+      "Crystal Reports",
+      "SQL",
+      "Maximo"
+    ],
+    "years_experience": 38,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "German (fluent)",
+      "French (good)"
+    ],
+    "region": "Limburg",
+    "regime": "unknown",
+    "key_employers": [
+      "Xidoor",
+      "Euramax",
+      "Bosal",
+      "Hanssen Transmission",
+      "Rettig Belgium (Radson)"
+    ],
+    "summary": "Senior business/functional analyst with 38y experience implementing ERP (Baan/Infor LN) and WMS/MES across manufacturing companies in Belgium and abroad."
+  },
+  "CAND-026": {
+    "id": "CAND-026",
+    "primary_role": "Frontend developer",
+    "primary_stack": [
+      "Angular",
+      "TypeScript",
+      "Java",
+      "Spring Boot",
+      "Azure",
+      "AWS",
+      "RxJS",
+      "Cypress"
+    ],
+    "years_experience": 12,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)",
+      "German (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "employed",
+    "key_employers": [
+      "Fod IBZ - Dienst Vreemdelingenzaken",
+      "Alimento",
+      "Hospital Logistics",
+      "Alphabet (BMW)",
+      "Ravago"
+    ],
+    "summary": "Front-end developer with 12y experience in Angular/TypeScript, currently building the CIR identity platform for Belgian Immigration Office; background at BMW/Alphabet and Mazda."
+  },
+  "CAND-027": {
+    "id": "CAND-027",
+    "primary_role": "Scrum Master",
+    "primary_stack": [
+      "Scrum",
+      "SAFe",
+      "LeSS",
+      "Kanban",
+      "ICF Coaching",
+      "Jira",
+      "Miro",
+      "Azure DevOps"
+    ],
+    "years_experience": 12,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "freelance",
+    "key_employers": [
+      "Euroclear",
+      "Fluvius",
+      "Nike",
+      "Hummingbird BV",
+      "Medtronic"
+    ],
+    "summary": "Scrum Master/Agile Coach with ICF certification, 12y professional experience including agile transformations at Euroclear, Fluvius and Nike."
+  },
+  "CAND-028": {
+    "id": "CAND-028",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "Vue.js",
+      "Angular",
+      "TypeScript",
+      "Magnolia CMS",
+      "Azure",
+      "Keycloak"
+    ],
+    "years_experience": 9,
+    "languages": [
+      "Dutch (native)",
+      "English (professional)",
+      "French (basic)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "employed",
+    "key_employers": [
+      "Engie Electrabel",
+      "Sciensano",
+      "Interreg France-Wallonie-Vlaanderen",
+      "Digipolis",
+      "Anglr"
+    ],
+    "summary": "Java full-stack developer with 9y experience, long tenure at Engie Electrabel building customer-facing web platform; KU Leuven master in Electronics-ICT."
+  },
+  "CAND-029": {
+    "id": "CAND-029",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "SAP",
+      "SAP S/4 HANA",
+      "M&A",
+      "PMO",
+      "PRINCE2",
+      "Agile",
+      "Microsoft Dynamics 365",
+      "ERP"
+    ],
+    "years_experience": 27,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (fluent)"
+    ],
+    "region": "unknown",
+    "regime": "freelance",
+    "key_employers": [
+      "FKnight",
+      "EY IT Advisory",
+      "Burger King/Quick",
+      "ArcelorMittal Flatcarbon Steel",
+      "Computer Sciences Corporation"
+    ],
+    "summary": "Senior CxO-level consultant with 27y experience in IT management, M&A, SAP transformations and PMO for industrial/retail/utilities clients."
+  },
+  "CAND-030": {
+    "id": "CAND-030",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "SAFe",
+      "Scrum",
+      "Kanban",
+      "BPMN 2.0",
+      "Jira",
+      "Confluence",
+      "REST API",
+      "Requirements Engineering"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "employed",
+    "key_employers": [
+      "Liantis",
+      "Securex v.z.w.",
+      "Securex Rekencentrum",
+      "Securex Integrity",
+      "Argenta Spaarbank"
+    ],
+    "summary": "Business analyst/Project manager/Teamlead with 20y experience, recent roles as Teamlead/Functional Analyst at Liantis and Securex; SAFe Product Owner certified."
+  },
+  "CAND-031": {
+    "id": "CAND-031",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Penetration Testing",
+      "Python",
+      "OWASP",
+      "Kali Linux",
+      "Burp Suite",
+      "SQL Server",
+      "Power BI",
+      "SIEM"
+    ],
+    "years_experience": 14,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "N0B0T",
+      "WeAreOne.World",
+      "Tomorrowland",
+      "Digipolis",
+      "Sogeti"
+    ],
+    "summary": "Cyber security consultant and ethical hacker (founder of N0B0T) with 14y experience in penetration testing and BI, clients include Tomorrowland, City of Antwerp, ALDI."
+  },
+  "CAND-032": {
+    "id": "CAND-032",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "Angular",
+      "React",
+      "AWS",
+      "Kafka",
+      "Docker",
+      "Test Containers"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "WE+",
+      "VDAB",
+      "Inetum-Realdolmen",
+      "Alpine Digital"
+    ],
+    "summary": "Junior full-stack developer with 4y experience in Java/Spring Boot and Angular/React, currently at Nike on SAP S4 Hana migration; previously at VDAB and WE+."
+  },
+  "CAND-033": {
+    "id": "CAND-033",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "MS Dynamics",
+      "Prince2",
+      "Agile",
+      "Scrum",
+      "Jira",
+      "Confluence",
+      "DEVOPS",
+      "CRM"
+    ],
+    "years_experience": 24,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (good)"
+    ],
+    "region": "Limburg",
+    "regime": "freelance",
+    "key_employers": [
+      "Privatum",
+      "Heraeus Electro Nite",
+      "Rode Kruis Vlaanderen",
+      "USG People Belgium",
+      "KBC"
+    ],
+    "summary": "Senior Project Manager/Scrum Master with 24y experience in ICT and CRM (Microsoft Dynamics) at KBC, Red Cross Flanders and Heraeus."
+  },
+  "CAND-034": {
+    "id": "CAND-034",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "ITIL4",
+      "Agile",
+      "Scrum",
+      "UML",
+      "BPMN",
+      "OneTrust",
+      "Cherwell",
+      "OMNITRACKER"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "French (good)",
+      "English (fluent)",
+      "German (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Belgian Federal Police (ANPR)",
+      "TGS",
+      "CTG",
+      "ESKO",
+      "MCS Facility Management"
+    ],
+    "summary": "Business/Functional analyst and Project Manager with 25y experience, current role at Belgian Federal Police ANPR team; background in ITSM tooling and digital transformation."
+  },
+  "CAND-035": {
+    "id": "CAND-035",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Scrum Master",
+      "FTTH",
+      "VoIP",
+      "Networking",
+      "Cybersecurity",
+      "Cloud Computing",
+      "UML"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "English (advanced)",
+      "German (advanced)",
+      "French (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Solutions 30",
+      "JS-Investments BV",
+      "Constructel",
+      "Engie-Fabricom",
+      "Proximus"
+    ],
+    "summary": "Project manager and Scrum Master with 25y experience in fiber, telecom and ICT installations; entrepreneur (JS-Investments) with VCA-VOL certification."
+  },
+  "CAND-036": {
+    "id": "CAND-036",
+    "primary_role": "Other",
+    "primary_stack": [
+      "Digital Strategy",
+      "UX Design",
+      "Business Strategy",
+      "Marketing Automation",
+      "PowerBI",
+      "AEM",
+      "Hubspot",
+      "CRM"
+    ],
+    "years_experience": 20,
+    "languages": [
+      "Dutch",
+      "English",
+      "French"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "DIDS",
+      "Plan.Net (Serviceplan)",
+      "Cegeka (Toyota Motor Europe)",
+      "Le Pain Quotidien",
+      "Nissan Motor Corporation"
+    ],
+    "summary": "Business consultant and digital strategist with 20y experience in digital marketing, UX, business strategy and data governance across automotive and retail."
+  },
+  "CAND-037": {
+    "id": "CAND-037",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Angular",
+      "Java",
+      "Spring Boot",
+      "Vue.js",
+      "Typescript",
+      "SCSS",
+      "Figma",
+      "CI/CD"
+    ],
+    "years_experience": 16,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Joyn",
+      "Atlas Copco",
+      "Sirus",
+      "WE+",
+      "KU Leuven ICTS"
+    ],
+    "summary": "Senior full-stack developer with 16y experience and strong front-end/UX focus, recently building Angular/React solutions for Joyn (KBC integration), Atlas Copco DAM platform and KU Leuven Toledo design systems."
+  },
+  "CAND-038": {
+    "id": "CAND-038",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Agile",
+      "PHP",
+      "Python",
+      "SQL",
+      "MySQL",
+      "Lean Six Sigma",
+      "ITIL"
+    ],
+    "years_experience": 35,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (basic)",
+      "Spanish (basic)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "freelance",
+    "key_employers": [
+      "Aptean/Objective",
+      "Linedata",
+      "Sofico",
+      "Shell",
+      "Engie"
+    ],
+    "summary": "PMP-certified senior Program/Project Manager with 35+ years experience across MES/WMS implementations, IoT software development and financial software, with Lean Six Sigma Black Belt and Civil Engineer background."
+  },
+  "CAND-040": {
+    "id": "CAND-040",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Information Security",
+      "Identity & Access Management",
+      "ISO27001",
+      "GDPR",
+      "Microsoft Identity Manager",
+      "Cloud Security",
+      "Privacy",
+      "Cybersecurity"
+    ],
+    "years_experience": 27,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)",
+      "German (basic)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "CyberMinute",
+      "Quest For Security",
+      "Microsoft",
+      "Traxion",
+      "CCB",
+      "Brussels Airport"
+    ],
+    "summary": "Senior security consultant and CISO/DPO with 27y experience, Microsoft MVP for Security (11y), accredited Lead Auditor for ISO27001/27701/22301/9001, IAPP/ISC\u00b2/PECB/ISACA-authorized trainer."
+  },
+  "CAND-041": {
+    "id": "CAND-041",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Information Security",
+      "Identity & Access Management",
+      "ISO27001",
+      "GDPR",
+      "Microsoft Identity Manager",
+      "Cloud Security",
+      "Privacy",
+      "Cybersecurity"
+    ],
+    "years_experience": 26,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "CyberMinute",
+      "Quest For Security",
+      "Microsoft",
+      "Traxion",
+      "CCB",
+      "Brussels Airport"
+    ],
+    "summary": "Senior security consultant and CISO/DPO with 26y experience (Dutch CV version), Microsoft MVP for Security, accredited Lead Auditor for ISO27001/27701/22301/9001, BELGIUM/EU/NATO Secret clearance pending renewal."
+  },
+  "CAND-042": {
+    "id": "CAND-042",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Project Management",
+      "Product Ownership",
+      "Microsoft Dynamics 365",
+      "HubSpot",
+      "Business Analysis",
+      "Data Quality",
+      "CRM",
+      "Process Automation"
+    ],
+    "years_experience": 6,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "2-Collab",
+      "Lease a Bike Belgium",
+      "Moore Belgium",
+      "Lemon Companies",
+      "Striktly",
+      "delaware BeLux"
+    ],
+    "summary": "Freelance IT Project Manager / Product Owner / Business Analyst with ~6y experience focused on digital transformation, process optimization and data quality across Belgian SMEs and international firms."
+  },
+  "CAND-043": {
+    "id": "CAND-043",
+    "primary_role": "Functional analyst",
+    "primary_stack": [
+      "Business Analysis",
+      "Scaled Agile",
+      "SAFe",
+      "Atlassian (Jira/Confluence)",
+      "Adobe Experience Manager",
+      "Archimate",
+      "Camunda",
+      "REST"
+    ],
+    "years_experience": 22,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "German (good)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "freelance",
+    "key_employers": [
+      "hiroki bv",
+      "Telenet (Randstad Digital)",
+      "Toyota Motor Europe",
+      "Toyota Insurance Management (Cegeka)",
+      "GFI",
+      "De Lijn"
+    ],
+    "summary": "Senior Business Analyst, Product Owner and Digital Architect with 22y consulting experience across Insurance, Mobility, Automotive and e-Commerce, leading pan-European Toyota digital programs (40+ markets) and digital transformations."
+  },
+  "CAND-044": {
+    "id": "CAND-044",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "GDPR",
+      "OneTrust",
+      "Privacy-by-design",
+      "DPIA/PIA",
+      "Microsoft Power Platform",
+      "Figma",
+      "Jira/Confluence",
+      "Contract Lifecycle Management"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "English (professional)",
+      "French (basic)"
+    ],
+    "region": "Brussel",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "LEGILE",
+      "DHL Express",
+      "VRT",
+      "Vlaamse Overheid",
+      "Terumo",
+      "Tomorrowland"
+    ],
+    "summary": "Privacy & data-protection consultant with legal background (Master IP/IT-Law KU Leuven) and 4y experience in compliance, business analysis and CLM projects, currently Privacy Officer at VRT and Data Interoperability BA at Departement Omgeving."
+  },
+  "CAND-045": {
+    "id": "CAND-045",
+    "primary_role": "Backend developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "Apache Kafka",
+      "Azure",
+      "TypeScript",
+      "PostgreSQL",
+      "Angular",
+      "Elasticsearch"
+    ],
+    "years_experience": 3,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "employed",
+    "key_employers": [
+      "Ravago",
+      "Continuum"
+    ],
+    "summary": "Junior Java Software Crafter with ~3y experience focused on Event-Driven Architecture, Kafka and Azure serverless components, recently building data-streaming and Elasticsearch indexing solutions at Ravago."
+  },
+  "CAND-046": {
+    "id": "CAND-046",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "IT Project Management",
+      "ITIL",
+      "Prince2",
+      "PMBOK",
+      "AWS",
+      "Azure",
+      "Networking",
+      "Infrastructure"
+    ],
+    "years_experience": 36,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "Spanish (basic)",
+      "German (basic)"
+    ],
+    "region": "Antwerpen",
+    "regime": "freelance",
+    "key_employers": [
+      "Telenet (Axxes)",
+      "DPG Media (Tergos)",
+      "AG Insurance (Acensi)",
+      "Isabel Group (Mediaan)",
+      "Informatica Van Breda",
+      "VITO",
+      "Intel",
+      "Dialogic"
+    ],
+    "summary": "Senior IT Infrastructure Project Manager / Solution Design Engineer with 36+ years experience including ICT/Operations management, network/datacenter migrations and AWS cloud transformations across Belgian enterprises (Telenet, DPG Media, AG Insurance, Intel)."
+  },
+  "CAND-047": {
+    "id": "CAND-047",
+    "primary_role": "Backend developer",
+    "primary_stack": [
+      "Java",
+      "Spring Boot",
+      "SQL",
+      "AWS",
+      "Azure",
+      "REST",
+      "Splunk",
+      "Jenkins"
+    ],
+    "years_experience": 4,
+    "languages": [
+      "Dutch (native)",
+      "German (native)",
+      "English (fluent)",
+      "Arabic (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "Wit-Gele Kruis"
+    ],
+    "summary": "Java Software Craftsman with 4y experience, currently Backend Developer at Nike on SAP AFS to S4 migration with AWS (S3, SQS, DynamoDB, IoT Things) and Splunk; previously Java Developer at Wit-Gele Kruis."
+  },
+  "CAND-048": {
+    "id": "CAND-048",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "Microsoft 365",
+      "Active Directory",
+      "Entra ID",
+      "Azure",
+      "SIEM/XDR (SentinelOne, Elastic, Wazuh)",
+      "DORA/NIS2/ISO27001",
+      "VMware",
+      "PowerShell"
+    ],
+    "years_experience": 25,
+    "languages": [
+      "Dutch (native)",
+      "French (fluent)",
+      "English (fluent)",
+      "Italian (good)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum",
+      "SerSo bvba",
+      "BKM nv",
+      "IPG Group (Telenet)"
+    ],
+    "summary": "Cybersecurity engineer with 5y dedicated cyber and 20+y overall IT experience, specialised in Microsoft security (AD/Entra/M365), SIEM/XDR implementation, DORA/NIS2/ISO27001 compliance and Blue/Red/Purple teaming."
+  },
+  "CAND-049": {
+    "id": "CAND-049",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Angular",
+      "Java",
+      "Spring Boot",
+      "Node.js",
+      "AWS",
+      "GraphQL",
+      "React.js",
+      "Apache Camel"
+    ],
+    "years_experience": 5,
+    "languages": [
+      "Dutch (native)",
+      "English (native)",
+      "French (fluent)"
+    ],
+    "region": "Vlaams-Brabant",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "Jidoka",
+      "InTouch",
+      "Enervalis",
+      "Eurofins Digital Testing"
+    ],
+    "summary": "Full-stack developer (~5y) currently at Nike on SAP S4 migration (Node SEC Simplification team) using Java/AWS DynamoDB/SQS/S3/React.js, with prior projects at Jidoka, InTouch, Enervalis (EV charging) and Eurofins payment integration."
+  },
+  "CAND-050": {
+    "id": "CAND-050",
+    "primary_role": "Architect",
+    "primary_stack": [
+      "Adobe Experience Manager (AEM)",
+      "Java",
+      "Spring Boot",
+      "AWS Cloud",
+      "JavaScript",
+      "RabbitMQ",
+      "Adobe Analytics",
+      "SAFE/Agile"
+    ],
+    "years_experience": 24,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)",
+      "German (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Liantis",
+      "IG.com",
+      "PGGM",
+      "Bridgestone",
+      "Yamaha Motor Europe",
+      "Argenta",
+      "KBC"
+    ],
+    "summary": "Senior AEM Architect / back-end developer with 24y experience and AEM Sites Architect Master + AWS Solutions Architect Associate certifications, leading Adobe Experience Cloud projects across retail, finance and automotive (IG, PGGM, Bridgestone, Yamaha, Argenta, KBC)."
+  },
+  "CAND-051": {
+    "id": "CAND-051",
+    "primary_role": "Cloud engineer",
+    "primary_stack": [
+      "Java 17",
+      "AWS (DynamoDB, SQS, S3, IoT Core, CloudFormation)",
+      "Adobe Experience Manager (AEM)",
+      "Spring",
+      "Kafka",
+      "Splunk",
+      "Jenkins",
+      "Apache Tomcat"
+    ],
+    "years_experience": 5,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Nike",
+      "AG Insurance",
+      "Kylie Cosmetics",
+      "Coty",
+      "Atlas Copco",
+      "Capgemini"
+    ],
+    "summary": "Cloud Engineer / Java & AEM Developer (~5y) currently at Nike SEC SimplyFly team building AWS-based data integration plugins (S3/SQS/DynamoDB/Kafka), with prior AEM Cloud Service projects at AG Insurance, Kylie Cosmetics, Coty and Atlas Copco."
+  },
+  "CAND-052": {
+    "id": "CAND-052",
+    "primary_role": "Full-stack developer",
+    "primary_stack": [
+      "Adobe Experience Manager (AEM)",
+      "Java",
+      "JavaScript",
+      "HTL",
+      "Apache Sling",
+      "Angular",
+      "Cypress",
+      "SCSS"
+    ],
+    "years_experience": 2,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "German (basic)"
+    ],
+    "region": "Netherlands",
+    "regime": "employed",
+    "key_employers": [
+      "IG.com",
+      "Yamaha Motor Europe",
+      "PGGM",
+      "Defense/Security NDA"
+    ],
+    "summary": "Full-stack AEM developer (~2y) Dutch national, with Adobe AEM Sites Developer + Business Practitioner certifications, recent projects on AEMaaCS for defense/security org, IG.com modernization, Yamaha Adobe Campaign Standard and PGGM Cypress UI testing framework."
+  },
+  "CAND-053": {
+    "id": "CAND-053",
+    "primary_role": "PM/PO",
+    "primary_stack": [
+      "Scrum",
+      "PRINCE2",
+      "Agile/Kanban",
+      "Atlassian (Jira/Confluence/Bitbucket)",
+      "Microsoft Power Platform",
+      "AI Builder/Copilot Studio",
+      "Python",
+      "C/C++"
+    ],
+    "years_experience": 30,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (fluent)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "Privatum/we+",
+      "Digitaal Vlaanderen",
+      "Mapscape B.V.",
+      "Siemens VDO",
+      "Cisco",
+      "Ferranti Computer Systems"
+    ],
+    "summary": "Senior Project Manager / Scrum Master with 30y experience including 15+ years on automotive navigation/HD-maps projects at Mapscape, currently at Privatum/we+ building Power Platform / Copilot Studio recruitment data flows and contributing to NIS2 compliance assessments."
+  },
+  "CAND-054": {
+    "id": "CAND-054",
+    "primary_role": "Privacy/Security",
+    "primary_stack": [
+      "ISO27001",
+      "GDPR",
+      "NIS2/Cyfun",
+      "NIST",
+      "OWASP",
+      "Information Security Governance",
+      "DPIA/DPA",
+      "IAM"
+    ],
+    "years_experience": 32,
+    "languages": [
+      "Dutch (native)",
+      "English (fluent)",
+      "French (advanced)",
+      "German (basic)"
+    ],
+    "region": "Limburg",
+    "regime": "employed",
+    "key_employers": [
+      "District09",
+      "Privatum",
+      "ICASA Group",
+      "EVO-Soft",
+      "Philips Interactive Media Centre"
+    ],
+    "summary": "Senior Security Officer / DPO and CEO of Privatum (born 1971) with 32y experience, currently CISO at District09, ISO27001 Lead Implementer with broad governance/risk/privacy background after early career in software development and sales/account management."
+  },
+  "CAND-039": {
+    "id": "CAND-039",
+    "primary_role": "Data engineer/scientist",
+    "primary_stack": [
+      "Python",
+      "SQL",
+      "R",
+      "ArcGIS",
+      "QGIS",
+      "PostgreSQL",
+      "Power BI",
+      "Google Earth Engine"
+    ],
+    "years_experience": 5,
+    "languages": [
+      "English (fluent)",
+      "French (intermediate)"
+    ],
+    "region": "Oost-Vlaanderen",
+    "regime": "unknown",
+    "key_employers": [
+      "Ghent University",
+      "University of Portsmouth",
+      "NM Geospatial"
+    ],
+    "summary": "Water Resource Management & GIS specialist with MSc in Sustainable Land Management (UGent), 5y experience in Python data analysis, geospatial modeling and remote sensing applied to environmental and hydrological assessments."
+  }
+};
+/* SYNC_MARKER:CANDIDATES_END */
+
+/* ═══════════════════════════════════════════════════════
+   VACANCY DATA
+═══════════════════════════════════════════════════════ */
+/* SYNC_MARKER:VACANCIES_START */
+const VACANCIES = {
+  "_meta": {
+    "source": "Privatum partner intake \u2014 forwarded by the WE+ team 2026-04-27",
+    "note": "These are the actual client requests WE+/Privatum receives from sourcing partners (Atmoz, Solvus, Connecting Expertise, ...) and end clients (Engie, VLABEL, Ypto, Departement Omgeving, ...). They replace the 5 we-plus.be website vacancies that were originally pulled via the HR-Technologies API \u2014 the partner team explicitly clarified that matching must happen on these intake requests, not on website job posts."
+  },
+  "VAC-001": {
+    "title": "Test Engineer (Selenium, urgent)",
+    "region": "Antwerpen",
+    "language": "NL",
+    "duration": "min. 1 jaar",
+    "start": "april 2026",
+    "urgency": "superdringend",
+    "is_freelance": null
+  },
+  "VAC-002": {
+    "title": "Lead Analist (Microsoft, Antwerpen)",
+    "region": "Antwerpen",
+    "language": "NL",
+    "duration": "tot eind 2025",
+    "start": "sept/okt",
+    "is_freelance": null
+  },
+  "VAC-003": {
+    "title": "Senior Project Manager (Toyota PMO)",
+    "language": "EN (NL plus)",
+    "is_freelance": null
+  },
+  "VAC-004": {
+    "title": "Functioneel Analist (Field Service Management, Hasselt)",
+    "region": "Hasselt",
+    "language": "NL",
+    "duration": "~3 maanden, kan verlengd worden",
+    "start": "asap",
+    "regime": "(quasi) fulltime, on-site",
+    "urgency": "dringend",
+    "is_freelance": null
+  },
+  "VAC-005": {
+    "title": "Data Privacy Analyst (Engie)",
+    "end_client": "Engie",
+    "sourcing_partner": "Atmoz Consult",
+    "start": "asap",
+    "end": "31/12/2025 (kans op verlenging)",
+    "is_freelance": null
+  },
+  "VAC-006": {
+    "title": "Junior/Medior DPO (NIS2, Vlaamse Overheid)",
+    "end_client": "Vlaamse Overheid (NIS2 traject)",
+    "sourcing_partner": "Atmoz Consult",
+    "language": "NL C2",
+    "duration": "~25 dagen tot einde jaar",
+    "start": "asap",
+    "is_freelance": null
+  },
+  "VAC-007": {
+    "title": "Senior Java Developer (MAGDA, Eigen Vermogen Digitaal Vlaanderen)",
+    "end_client": "Digitaal Vlaanderen",
+    "client_ref": "Ontwikkelaar (JAVA) Senior \u2014 Perceel 1",
+    "language": "NL C2",
+    "start": "16/03/2026",
+    "end": "15/07/2027",
+    "contract_type": "Raamcontract 2022 - 2027 (Lot 1)",
+    "is_freelance": null
+  },
+  "VAC-008": {
+    "title": "Junior IT Security Consultant (Solvus / Qualys)",
+    "end_client": "Solvus",
+    "language": "EN (FR/NL plus)",
+    "start": "15/07/2024",
+    "end": "31/12/2024",
+    "contract_type": "Time & Material",
+    "location": "Hybrid \u2014 2d on-site Brussels Center / 3d remote",
+    "is_freelance": null
+  },
+  "VAC-009": {
+    "title": "Medior Full Stack Java Developer (Departement Omgeving \u2014 ApoCow)",
+    "end_client": "Departement Omgeving (Vlaamse Overheid)",
+    "client_ref": "ApoCow",
+    "language": "NL C2",
+    "start": "18/05/2026",
+    "end": "31/12/2026",
+    "contract_type": "Raamcontract 2022 - 2027 (Lot 1)",
+    "location": "Brussel \u2014 min. 2 dagen op kantoor",
+    "is_freelance": null
+  },
+  "VAC-010": {
+    "title": "Senior Java Developer (VLABEL \u2014 Vlaams Fiscaal Platform)",
+    "end_client": "Vlaamse Belastingdienst (VLABEL)",
+    "client_ref": "VLABEL_JAVA_2026",
+    "language": "NL C2",
+    "start": "01/06/2026",
+    "end": "31/05/2027",
+    "contract_type": "Raamcontract 2022 - 2027 (Lot 1)",
+    "is_freelance": null
+  },
+  "VAC-011": {
+    "title": "CISO Security Architect (Ypto)",
+    "end_client": "Ypto (NMBS Group)",
+    "client_ref": "YPR9848",
+    "language": "EN + FR/NL",
+    "start": "18/05/2026",
+    "end": "31/12/2026",
+    "contract_type": "Time & Material",
+    "location": "2 days on-site per week",
+    "is_freelance": null
+  }
+};
+/* SYNC_MARKER:VACANCIES_END */
+
+/* ═══════════════════════════════════════════════════════
+   HARD FILTER DEFINITIONS (gates — not penalties)
+═══════════════════════════════════════════════════════ */
+/* SYNC_MARKER:FILTERS_START */
+const VAC_HARD_FILTERS = {
+  "VAC-001":{dutch:true, region:["Antwerpen","Vlaams-Brabant","Brussel","Limburg","Oost-Vlaanderen","West-Vlaanderen","Belgium","unknown"]},
+  "VAC-002":{dutch:true},
+  "VAC-003":{english:true},
+  "VAC-004":{dutch:true, region:["Limburg","Antwerpen","Vlaams-Brabant","Belgium","unknown"]},
+  "VAC-005":{},
+  "VAC-006":{dutch_c2:true},
+  "VAC-007":{dutch_c2:true},
+  "VAC-008":{english:true},
+  "VAC-009":{dutch_c2:true},
+  "VAC-010":{dutch_c2:true},
+  "VAC-011":{english:true, fr_or_nl:true}
+};
+/* SYNC_MARKER:FILTERS_END */
+
+/* SYNC_MARKER:MATCHES_START */
+const MATCH_RESULTS = {
+  "VAC-001": [
+    {
+      "candidate_id": "CAND-052",
+      "score": 0.52,
+      "reason": "AEM full-stack developer with recent Cypress UI testing framework experience at PGGM (2024-2025), demonstrating hands-on test automation in a project context; Angular and Java background supports functional/technical testing mindset. However, Selenium is not explicitly listed in the stack \u2014 Cypress is the automation tool used, and primary role is developer not tester.",
+      "risks": [
+        "Selenium not explicitly cited anywhere in CV \u2014 only Cypress; hard requirement may not be fully met",
+        "Primary identity is developer, not test engineer; no dedicated testing role visible",
+        "Based in Netherlands, not Antwerpen region"
+      ],
+      "motivation_nl": "Deze kandidaat heeft een sterke technische achtergrond als full-stack AEM-ontwikkelaar en heeft recentelijk een Cypress UI-testframework opgezet voor PGGM, wat aantoont dat testautomatisatie een actief onderdeel is van zijn werkpraktijk. Met ervaring in Angular, Java en Adobe Experience Manager beschikt hij over de technische breedte om functioneel \u00e9n technisch te testen in een agile omgeving. Hoewel zijn hoofdrol die van ontwikkelaar is, maakt zijn vertrouwdheid met geautomatiseerd testen hem een waardevolle kandidaat voor een team dat testautomatisatie serieus neemt."
+    },
+    {
+      "candidate_id": "CAND-026",
+      "score": 0.41,
+      "reason": "Front-end developer at Belgian Immigration Office (FOD IBZ) since recent years using Angular/TypeScript and Cypress for the CIR identity platform; Cypress-based test experience is present but Selenium is not cited; located in Antwerpen region which is a positive fit. No dedicated QA/test engineer profile.",
+      "risks": [
+        "Selenium absent from stack \u2014 Cypress used instead; hard requirement risk",
+        "Developer profile, not a test engineer by role or certification",
+        "No ISTQB or formal testing credentials visible"
+      ],
+      "motivation_nl": "Met 12 jaar ervaring als front-endontwikkelaar in Angular en TypeScript heeft deze kandidaat een diep technisch inzicht in webapplicaties en de bijbehorende kwaliteitsborging. Zijn huidige project bij de Dienst Vreemdelingenzaken omvat het bouwen van een kritisch identiteitsplatform waarbij kwaliteit en stabiliteit centraal staan. Zijn nabijheid in de Antwerpse regio en vertrouwdheid met agile werkmethoden maken hem operationeel snel inzetbaar, al zal de overstap naar een zuivere testrol een korte aanloopperiode vereisen."
+    },
+    {
+      "candidate_id": "CAND-032",
+      "score": 0.38,
+      "reason": "Junior full-stack developer at Nike (since ~2024) with Java/Spring Boot and Angular/React; stack includes 'Test Containers' suggesting some testing exposure, and Azure DevOps aligns with the vacancy's nice-to-have. Selenium is not cited; 4y experience is junior level but the Limburg location and agile background are positives.",
+      "risks": [
+        "Selenium not present in stack \u2014 no evidence of test automation with Selenium",
+        "Test Containers is a developer integration-testing tool, not a QA Selenium framework",
+        "Junior profile (4y) with developer focus \u2014 no dedicated QA experience visible"
+      ],
+      "motivation_nl": "Deze junior full-stack ontwikkelaar brengt een brede technische basis mee in Java, Spring Boot, Angular en React, opgebouwd via projecten bij VDAB, WE+ en momenteel Nike. Zijn vertrouwdheid met Azure DevOps en agile werkmethoden sluit goed aan bij de werkomgeving van de klant. Hoewel zijn achtergrond primair die van ontwikkelaar is, geeft zijn ervaring met geautomatiseerde tests (Test Containers) blijk van affiniteit met kwaliteitsborging, wat een goede basis vormt om door te groeien in een testrole."
+    }
+  ]
+};
+/* SYNC_MARKER:MATCHES_END */
+
+let currentMatchingMode = 'algo'; // 'algo' or 'ai'
+function _langs(cand){return(cand.languages||[]).map(l=>l.toLowerCase())}
+const BAD_DUTCH = ["a1","a2","basic","elementary","beginner","notions"];
+const GOOD_DUTCH = ["native","moeder","c2","c1","fluent","business","proficient","advanced"];
+
+function hasDutch(cand){
+  return _langs(cand).some(l=>(l.includes("dutch")||l.includes("nl"))&&!BAD_DUTCH.some(b=>l.includes(b)));
+}
+function hasDutchC2(cand){
+  return _langs(cand).some(l=>(l.includes("dutch")||l.includes("nl"))&&GOOD_DUTCH.some(g=>l.includes(g)));
+}
+function hasEnglish(cand){return _langs(cand).some(l=>l.includes("english"))}
+function hasFrench(cand){return _langs(cand).some(l=>l.includes("french")||l.includes("français"))}
+
+function applyHardFilters(vacId){
+  const f = VAC_HARD_FILTERS[vacId]||{};
+  const passed=[], filteredOut=[];
+  Object.values(CANDIDATES).forEach(c=>{
+    const reasons=[];
+    if(f.dutch     && !hasDutch(c))   reasons.push("Dutch B2+ required");
+    if(f.dutch_c2  && !hasDutchC2(c)) reasons.push("Dutch C2 required");
+    if(f.english   && !hasEnglish(c)) reasons.push("English required");
+    if(f.fr_or_nl  && !hasFrench(c) && !hasDutch(c)) reasons.push("French or Dutch required");
+    if(f.region){
+      const cr=(c.region||"").toLowerCase();
+      const ok=f.region.map(r=>r.toLowerCase());
+      if(cr&&cr!=="other"&&cr!=="unknown"&&cr!=="netherlands"&&!ok.includes(cr)){
+        reasons.push(`Region '${c.region}' outside area`);
+      }
+    }
+    if(reasons.length) filteredOut.push({cand:c,reasons});
+    else passed.push(c.id);
+  });
+  return {passed, filteredOut};
+}
+
+/* ═══════════════════════════════════════════════════════
+   MATCHING ENGINE (algorithmic fallback)
+═══════════════════════════════════════════════════════ */
+function skillMatch(req, stack, summary){
+  const r=req.toLowerCase().replace(/[\s\-\/\.]/g,"");
+  const s=summary.toLowerCase();
+  return stack.some(cs=>{
+    const c=cs.toLowerCase().replace(/[\s\-\/\.]/g,"");
+    return c.includes(r)||(r.includes(c)&&c.length>4);
+  })||s.includes(req.toLowerCase());
+}
+
+function scoreCandidate(candId, vacId){
+    if (currentMatchingMode === 'ai' && MATCH_RESULTS[vacId]) {
+        const aiMatch = MATCH_RESULTS[vacId].find(m => m.candidate_id === candId);
+        if (aiMatch) return {score: Math.round(aiMatch.score * 100), isAI: true, motivation: aiMatch.motivation};
+    }
+  const c=CANDIDATES[candId], v=VACANCIES[vacId];
+  const stack=c.primary_stack||[], summary=(c.summary||"").toLowerCase();
+  const role=(c.primary_role||"").toLowerCase();
+  const allReq=[...new Set([...v.must_haves,...v.required_skills])];
+  const matched=allReq.filter(r=>skillMatch(r,stack,summary));
+  const skillScore=allReq.length?(matched.length/allReq.length)*100:0;
+  const missingMust=v.must_haves.filter(m=>!skillMatch(m,stack,summary));
+  const mustPenalty=missingMust.length*22;
+  const yrs=c.years_experience||0;
+  let expScore=yrs>=v.min_years+10?100:yrs>=v.min_years+5?88:yrs>=v.min_years?72:yrs>=v.min_years-1?45:18;
+  const kws=v.industry_keywords||[];
+  const kwHits=kws.filter(k=>summary.includes(k)||role.includes(k));
+  const indScore=kws.length?Math.min(100,(kwHits.length/kws.length)*130):55;
+  const optMatched=(v.optional_skills||[]).filter(o=>skillMatch(o,stack,summary));
+  const optBonus=Math.min(6,optMatched.length*2);
+  const raw=(skillScore*.5)+(expScore*.3)+(indScore*.2);
+  const final=Math.max(5,Math.min(97,raw-mustPenalty+optBonus));
+  return{score:Math.round(final),score01:(final/100).toFixed(2),skillScore:Math.round(skillScore),
+    expScore:Math.round(expScore),indScore:Math.round(Math.min(100,indScore)),
+    matchedSkills:matched,missingMust,risks:missingMust.map(m=>`No ${m} found in CV`)};
+}
+
+function getTop3(vacId){
+  const {passed}=applyHardFilters(vacId);
+  return passed.map(id=>({id,...scoreCandidate(id,vacId)}))
+    .sort((a,b)=>b.score-a.score).slice(0,3);
+}
+
+function generateReason(cand, vac, r){
+  if(r.motivation) return r.motivation;
+  const yrs=cand.years_experience, role=cand.primary_role;
+  const emp=(cand.key_employers||[]).slice(0,2).join(" and ");
+  let t=`${role}, ${yrs}y`;
+  if(r.matchedSkills.length) t+=`, covers ${r.matchedSkills.slice(0,3).join(", ")}`;
+  if(emp) t+=`. Recent: ${emp}`;
+  if(r.missingMust.length) t+=`. ⚠ No explicit ${r.missingMust.join(", ")}`;
+  else if(r.score>=80) t+=". Strong all-round fit";
+  else if(r.score>=60) t+=". Good fit, minor gaps to validate";
+  else t+=". Partial fit — transferable skills may cover";
+  return t+".";
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   RENDER HELPERS
+═══════════════════════════════════════════════════════ */
+let activeVac=null;
+let currentMatchingMode = 'algo';
+let selectedCandidates = {}; // vacId -> Set of candIds
+
+function toggleCandidateSelection(vacId, candId) {
+  if (!selectedCandidates[vacId]) selectedCandidates[vacId] = new Set();
+  if (selectedCandidates[vacId].has(candId)) {
+    selectedCandidates[vacId].delete(candId);
+  } else {
+    selectedCandidates[vacId].add(candId);
+  }
+  renderVacancyDetail(vacId);
+}
+
+function scoreColor(s){
+  if(s>=80) return "#00E5FF"; // High - Cyan
+  if(s>=60) return "#F9A825"; // Mid - Gold
+  if(s>=40) return "#FFD740"; // Fair - Yellow/Amber
+  return "#FF5252"; // Low - Red
+}
+
+function donut(score,size=62){
+  const r=(size/2)-6;
+  const circ=2*Math.PI*r;
+  const dash=(score/100)*circ;
+  const col=scoreColor(score);
+  return`<div class="donut-wrap" style="width:${size}px;height:${size}px">
+<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <circle class="donut-bg" cx="${size/2}" cy="${size/2}" r="${r}"/>
+  <circle class="donut-prog donut-ring" cx="${size/2}" cy="${size/2}" r="${r}"
+    stroke="${col}" stroke-dasharray="${dash.toFixed(1)} ${circ.toFixed(1)}"
+    style="transform-origin:${size/2}px ${size/2}px"/>
+</svg>
+<div class="donut-inner">
+  <div class="donut-val" style="color:${col}">${score}</div>
+  <div class="donut-pct">%</div>
+</div></div>`;
+}
+
+/* ── Sidebar ── */
+function renderSidebar(){
+  const filtered = Object.entries(VACANCIES).filter(([id]) => id.startsWith("VAC-"));
+  document.getElementById("sb-list").innerHTML = filtered.map(([id,v])=>`
+<div class="vc" id="vc-${id}" onclick="selectVacancy('${id}')">
+  <div class="vc-top">
+    <span class="vc-id">${id}</span>
+    <span class="vc-title">${v.title || 'Untitled Vacancy'}</span>
+  </div>
+  <div class="vc-meta">
+    ${v.region?`<span class="bdg bdg-region">${v.region}</span>`:""}
+    ${v.urgency==="superdringend"?`<span class="bdg bdg-urgent">Urgent</span>`:""}
+    ${v.urgency==="dringend"?`<span class="bdg bdg-dringend">Dringend</span>`:""}
+    ${v.category?`<span class="bdg bdg-cat">${v.category}</span>`:""}
+    ${v.language?`<span class="bdg bdg-lang">${v.language}</span>`:""}
+  </div>
+</div>`).join("");
+}
+
+function filterVacancies(q){
+  const lq=q.toLowerCase();
+  document.querySelectorAll(".vc").forEach(el=>{
+    const id=el.id.replace("vc-","");
+    const v=VACANCIES[id];
+    const t=`${id} ${v.title} ${v.subtitle||""} ${v.region||""} ${v.category}`.toLowerCase();
+    el.style.display=t.includes(lq)?"":"none";
+  });
+}
+
+/* ── Welcome screen ── */
+function renderWelcome(){
+  const roles={};
+  Object.values(CANDIDATES).forEach(c=>{roles[c.primary_role]=(roles[c.primary_role]||0)+1});
+  const sorted=Object.entries(roles).sort((a,b)=>b[1]-a[1]);
+  const max=sorted[0][1];
+  const colors=["#00E5FF","#F9A825","#3A506B","#FFD740","#00B8D4","#CD7F32","#4F5D75","#94A3B8"];
+  document.getElementById("role-bars").innerHTML=sorted.map(([r,n],i)=>`
+<div class="role-item">
+  <div class="role-name">${r}</div>
+  <div class="role-track"><div class="role-fill" style="width:${(n/max)*100}%;background:${colors[i%colors.length]}"></div></div>
+  <div class="role-n">${n}</div>
+</div>`).join("");
+  const cats={};
+  Object.values(VACANCIES).forEach(v=>{cats[v.category]=(cats[v.category]||0)+1});
+  document.getElementById("vac-overview").innerHTML=Object.entries(cats).map(([c,n],i)=>`
+<div class="role-item">
+  <div class="role-name">${c}</div>
+  <div class="role-track"><div class="role-fill" style="width:${(n/11)*100}%;background:${colors[i%colors.length]}"></div></div>
+  <div class="role-n">${n}</div>
+</div>`).join("");
+}
+
+/* ── Vacancy selection ── */
+function selectVacancy(id){
+  activeVac=id;
+  document.querySelectorAll(".vc").forEach(el=>el.classList.remove("active"));
+  document.getElementById("vc-"+id).classList.add("active");
+  const ws=document.getElementById("welcome-screen"), vv=document.getElementById("vac-view");
+  ws.classList.add("hidden");
+  vv.classList.remove("hidden");
+  vv.classList.remove("fade-up");
+  void vv.offsetWidth;
+  vv.classList.add("fade-up");
+  renderVacancyDetail(id);
+  renderFilterInfo(id);
+  renderModeSelector();
+  renderCandidates();
+}
+
+function renderVacancyDetail(id){
+  const v=VACANCIES[id];
+  if(!v) return;
+  const icons={Engineering:"⚙️",Data:"📊",Frontend:"🎨",Backend:"💻",Cloud:"☁️",Design:"🖌️",HR:"👥",Support:"🎧"};
+  
+  document.getElementById("vd-detail").innerHTML = `
+<div class="vd-hdr">
+  <div class="vd-icon">${icons[v.category]||icons.Engineering}</div>
+  <div style="flex:1">
+    <div class="vd-title">${v.title} ${v.subtitle ? `<span style="font-weight:400;color:var(--muted);font-size:14px">— ${v.subtitle}</span>` : ""}</div>
+    <div class="vd-meta">
+      ${v.category?`<span class="bdg bdg-cat">${v.category}</span>`:""}
+      ${v.region?`<span class="bdg bdg-region">${v.region}</span>`:""}
+      ${v.language?`<span class="bdg bdg-lang">${v.language}</span>`:""}
+      ${v.start?`<span class="bdg bdg-region">Start: ${v.start}</span>`:""}
+      ${v.duration?`<span class="bdg bdg-region">${v.duration}</span>`:""}
+      ${v.urgency==="superdringend"?`<span class="bdg bdg-urgent">Superdringend</span>`:""}
+      ${v.urgency==="dringend"?`<span class="bdg bdg-dringend">Dringend</span>`:""}
+    </div>
+  </div>
+  <span style="font-size:11px;color:var(--muted);font-weight:600;align-self:flex-start">${id}</span>
+</div>
+
+<div class="sel-box">
+  <div class="sel-hdr">
+    <span class="sel-title">Selected for AI Match</span>
+    <button onclick="openPoolModal('${id}')" class="text-[10px] text-primary font-bold hover:underline">BROWSE POOL &plus;</button>
+  </div>
+  <div class="sel-list" id="sel-list">
+    ${Array.from(selectedCandidates[id] || []).map(cid => `
+      <div class="sel-tag">
+        ${cid}
+        <button onclick="toggleCandidateSelection('${id}','${cid}')">&times;</button>
+      </div>
+    `).join("") || '<span style="font-size:11px;color:var(--muted);font-style:italic">No specific CVs selected — matching against full eligible pool</span>'}
+  </div>
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin:14px 0">${v.description || 'No summary available.'}</p>
+<div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:flex-end">
+  <button onclick="copySyncCmd('${id}')" class="btn-sync">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:14px;height:14px;margin-right:6px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+    Copy Run Command
+  </button>
+</div>
+<div class="jd-expand">
+  <div class="jd-trigger" onclick="toggleJD()">
+    <span>Full Job Description</span>
+    <svg class="jd-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div id="jd-full" class="jd-content">
+    ${v.full_description ? v.full_description.split('\n').map(p=>`<p>${p}</p>`).join('') : '<p>Detailed description not available.</p>'}
+  </div>
+</div>
+<div class="vd-body">
+  <div class="skills-block"><h4>Must-have skills</h4><div class="tags">${(v.must_haves||[]).map(s=>`<span class="tag tag-must">${s}</span>`).join("")}</div></div>
+  <div class="skills-block"><h4>Required skills</h4><div class="tags">${(v.required_skills||[]).filter(s=>!(v.must_haves||[]).includes(s)).map(s=>`<span class="tag tag-req">${s}</span>`).join("")}</div></div>
+  <div class="skills-block" style="margin-top:10px"><h4>Nice to have</h4><div class="tags">${(v.optional_skills||[]).map(s=>`<span class="tag tag-opt">${s}</span>`).join("")}</div></div>
+  <div class="skills-block" style="margin-top:10px"><h4>Min. experience</h4><div style="font-size:22px;font-weight:700;color:var(--primary)">${v.min_years||0}+ <span style="font-size:13px;font-weight:500;color:var(--muted)">years</span></div></div>
+</div>`;
+}
+
+/* ── Candidate pool modal ── */
+function openPoolModal(vacId) {
+  const modal = document.getElementById("pool-overlay");
+  const list = document.getElementById("pool-list");
+  const selected = selectedCandidates[vacId] || new Set();
+  
+  list.innerHTML = Object.values(CANDIDATES).map(c => `
+    <div class="pool-row" onclick="togglePoolSelection('${vacId}', '${c.id}')">
+      <input type="checkbox" ${selected.has(c.id) ? 'checked' : ''}>
+      <div class="pool-info">
+        <div class="pool-id">${c.id}</div>
+        <div class="pool-role">${c.primary_role} · ${c.years_experience}y · ${c.region||'BE'}</div>
+      </div>
+    </div>
+  `).join("");
+  
+  modal.classList.remove("hidden");
+}
+
+function closePoolModal() {
+  document.getElementById("pool-overlay").classList.add("hidden");
+}
+
+function togglePoolSelection(vacId, candId) {
+  toggleCandidateSelection(vacId, candId);
+  openPoolModal(vacId); // Refresh modal view
+}
+
+function copySyncCmd(id) {
+    const selected = selectedCandidates[id] ? Array.from(selectedCandidates[id]) : [];
+    let cmd = `python3 run.py ${id}`;
+    if (selected.length > 0) {
+        cmd += ` --candidates ${selected.join(',')}`;
+    }
+    navigator.clipboard.writeText(cmd).then(() => {
+        alert(`Copied: ${cmd}\nRun this in your terminal to trigger AI matching for these specific CVs.`);
+    });
+}
+
+function toggleJD(){
+  const trigger = document.querySelector('.jd-trigger');
+  const content = document.getElementById('jd-full');
+  if(!trigger || !content) return;
+  const isOpen = trigger.classList.toggle('open');
+  content.classList.toggle('show');
+}
+
+/* ── Filter info bar ── */
+function renderFilterInfo(id){
+  const f=VAC_HARD_FILTERS[id]||{};
+  const {passed,filteredOut}=applyHardFilters(id);
+  const rules=[];
+  if(f.dutch) rules.push("Dutch B2+");
+  if(f.dutch_c2) rules.push("Dutch C2");
+  if(f.english) rules.push("English");
+  if(f.fr_or_nl) rules.push("FR or NL");
+  if(f.region) rules.push(`Region: ${f.region.filter(r=>!["unknown","Belgium"].includes(r)).join(" / ")}`);
+  document.getElementById("filter-info").innerHTML=`
+<div class="filter-bar">
+  <span class="filter-bar-label">Hard filters</span>
+  <span class="filter-stat green">${passed.length} passed</span>
+  <span style="color:var(--border)">·</span>
+  <span class="filter-stat red">${filteredOut.length} excluded</span>
+  <span style="color:var(--border)">·</span>
+  <span class="filter-stat gray">${Object.keys(CANDIDATES).length} total</span>
+  ${rules.map(r=>`<span class="filter-rule"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>${r}</span>`).join("")}
+</div>`;
+}
+
+function renderModeSelector() {
+    document.getElementById('mode-selector').innerHTML = `
+        <div class="flex items-center gap-3 mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
+            <span class="text-sm font-medium text-slate-700">Ranking Engine:</span>
+            <div class="flex bg-white rounded-md p-1 shadow-sm border border-slate-200">
+                <button id="mode-algo" onclick="setMatchingMode('algo')" 
+                    class="px-3 py-1 text-xs font-semibold rounded transition-all ${currentMatchingMode === 'algo' ? 'bg-slate-800 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50'}">
+                    Standard Algorithm
+                </button>
+                <button id="mode-ai" onclick="setMatchingMode('ai')" 
+                    class="px-3 py-1 text-xs font-semibold rounded transition-all ${currentMatchingMode === 'ai' ? 'bg-cyan-600 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50'}">
+                    Claude AI Ranked
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function setMatchingMode(mode) {
+    currentMatchingMode = mode;
+    renderModeSelector();
+    renderCandidates();
+}
+
+/* ── Candidates section ── */
+function renderCandidates() {
+  const vacId = activeVac;
+  const top3=getTop3(vacId);
+  const {filteredOut}=applyHardFilters(vacId);
+
+  document.getElementById("pool-badge").textContent=`Top ${top3.length} of ${Object.keys(CANDIDATES).length} candidates`;
+  document.getElementById("sec-sub").textContent=currentMatchingMode === 'ai' ? "Ranked by AI — semantic matching" : "Ranked algorithmically — skill · experience · industry";
+
+  const rankCls=["r1","r2","r3"];
+  const rankLbl=["#1","#2","#3"];
+
+  document.getElementById("cands-grid").innerHTML=top3.map((r,i)=>{
+    const cand=CANDIDATES[r.id];
+    if(!cand) return "";
+    const showMatched=(r.matchedSkills||[]).slice(0,4);
+    const risks=r.risks||[];
+    const reason=generateReason(cand,VACANCIES[vacId],r);
+    return`<div class="cand-card" onclick="openModal('${r.id}','${vacId}')">
+  <div class="rank ${rankCls[i]}">${rankLbl[i]}</div>
+  <div class="score-row">
+    ${donut(r.score)}
+    <div class="cand-info">
+      <div class="cand-name">${cand.id}</div>
+      <div class="cand-role">${cand.primary_role}</div>
+      <div class="cand-quick">
+        <div class="cq-item"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${cand.years_experience}y</div>
+        <div class="cq-item"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${cand.region||"Belgium"}</div>
+        <div class="cq-item"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>${cand.regime||"—"}</div>
+      </div>
+    </div>
+  </div>
+  <div class="breakdown">
+    <div class="br-row"><span class="br-lbl">Skills</span><div class="br-track"><div class="br-fill f-skill" style="width:${r.skillScore}%"></div></div><span class="br-pct">${r.skillScore}%</span></div>
+    <div class="br-row"><span class="br-lbl">Experience</span><div class="br-track"><div class="br-fill f-exp" style="width:${r.expScore}%"></div></div><span class="br-pct">${r.expScore}%</span></div>
+    <div class="br-row"><span class="br-lbl">Industry</span><div class="br-track"><div class="br-fill f-ind" style="width:${r.indScore}%"></div></div><span class="br-pct">${r.indScore}%</span></div>
+  </div>
+  ${showMatched.length?`<div class="sk-row"><div class="sk-lbl">Matched</div>${showMatched.map(s=>`<span class="sk-tag sk-match">${s}</span>`).join("")}${r.matchedSkills.length>4?`<span class="sk-tag" style="background:var(--bg);color:var(--muted);border:1px solid var(--border)">+${r.matchedSkills.length-4}</span>`:""}</div>`:""}
+  ${risks.length?`<div class="sk-row"><div class="sk-lbl">Risks</div>${risks.slice(0,2).map(s=>`<span class="sk-tag sk-risk">${s}</span>`).join("")}</div>`:""}
+  <div class="just">${reason}</div>
+</div>`;
+  }).join("");
+
+  /* Filtered out section */
+  document.getElementById("filtered-wrap").innerHTML=filteredOut.length?`
+<div class="filtered-section">
+  <div class="filtered-toggle" onclick="toggleFiltered(this)">
+    <span>${filteredOut.length} candidates excluded by hard filters</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="filtered-list" id="filtered-list">
+    ${filteredOut.map(({cand,reasons})=>`
+<div class="filtered-row">
+  <span class="filtered-id">${cand.id}</span>
+  <span class="filtered-role">${cand.primary_role}</span>
+  <span class="filtered-reason">${reasons.join(" · ")}</span>
+</div>`).join("")}
+  </div>
+</div>`:"";
+}
+
+function toggleFiltered(el){
+  const list=document.getElementById("filtered-list");
+  list.classList.toggle("open");
+  el.querySelector("svg").style.transform=list.classList.contains("open")?"rotate(180deg)":"";
+}
+
+/* ═══════════════════════════════════════════════════════
+   CANDIDATE MODAL
+═══════════════════════════════════════════════════════ */
+function openModal(candId, vacId){
+  const cand=CANDIDATES[candId], vac=VACANCIES[vacId];
+  const r=scoreCandidate(candId,vacId);
+  r.score01=(r.score/100).toFixed(2);
+  const reason=generateReason(cand,vac,r);
+  const risks=r.risks||[];
+
+  document.getElementById("modal-body").innerHTML=`
+<div class="modal-hdr">
+  <div>
+    <div class="modal-ttl">${cand.id}</div>
+    <div style="font-size:12px;color:var(--muted);margin-top:3px">${cand.primary_role} · ${cand.years_experience}y · ${cand.region||"Belgium"} · ${cand.regime||"—"}</div>
+  </div>
+  <button class="modal-close" onclick="closeModal()">&times;</button>
+</div>
+<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:14px;background:var(--bg);border-radius:var(--rs)">
+  ${donut(r.score,72)}
+  <div style="flex:1">
+    <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px">Match for ${vac.title} <span style="font-weight:400">(score: ${r.score01})</span></div>
+    <div class="br-row"><span class="br-lbl">Skills</span><div class="br-track"><div class="br-fill f-skill" style="width:${r.skillScore}%"></div></div><span class="br-pct">${r.skillScore}%</span></div>
+    <div class="br-row"><span class="br-lbl">Experience</span><div class="br-track"><div class="br-fill f-exp" style="width:${r.expScore}%"></div></div><span class="br-pct">${r.expScore}%</span></div>
+    <div class="br-row"><span class="br-lbl">Industry</span><div class="br-track"><div class="br-fill f-ind" style="width:${r.indScore}%"></div></div><span class="br-pct">${r.indScore}%</span></div>
+  </div>
+</div>
+<div class="modal-section"><h4>Summary</h4><p>${cand.summary}</p></div>
+<div class="modal-section"><h4>Technical Stack</h4><div class="emp-list">${cand.primary_stack.map(s=>`<span class="emp-tag">${s}</span>`).join("")}</div></div>
+<div class="modal-section"><h4>Languages</h4><div class="emp-list">${(cand.languages||[]).map(l=>`<span class="emp-tag">${l}</span>`).join("")}</div></div>
+<div class="modal-section"><h4>Key Employers</h4><div class="emp-list">${(cand.key_employers||[]).map(e=>`<span class="emp-tag">${e}</span>`).join("")}</div></div>
+<div class="modal-section"><h4>Match Reason</h4><p>${reason}</p></div>
+${risks.length?`<div class="modal-section"><h4>Risks</h4><div class="emp-list">${risks.map(s=>`<span class="sk-tag sk-risk" style="font-size:12px;padding:4px 10px">${s}</span>`).join("")}</div></div>`:""}`;
+  document.getElementById("modal-overlay").classList.remove("hidden");
+}
+
+function closeModal(e){
+  if(!e||e.target===document.getElementById("modal-overlay"))
+    document.getElementById("modal-overlay").classList.add("hidden");
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeModal();
+});
+</script>
+
+<!-- Candidate Pool Selection Modal -->
+<div id="pool-overlay" class="modal-overlay hidden" onclick="closePoolModal(event)">
+  <div class="modal-card" style="max-width:400px" onclick="event.stopPropagation()">
+    <div class="modal-hdr">
+      <div>
+        <div class="modal-ttl">Select Candidate Pool</div>
+        <div style="font-size:12px;color:var(--muted)">Target specific CVs for this vacancy</div>
+      </div>
+      <button class="modal-close" onclick="closePoolModal()">&times;</button>
+    </div>
+    <div id="pool-list" class="pool-list" style="margin-top:14px"></div>
+    <div style="margin-top:16px;display:flex;justify-content:flex-end">
+      <button onclick="closePoolModal()" class="btn-primary">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+renderSidebar();
+renderWelcome();
+</script>
+</body>
+</html>

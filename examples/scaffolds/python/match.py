@@ -210,16 +210,9 @@ def call_claude(vacancy_text: str, vac_id: str, candidate_blocks: str) -> dict:
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
-def match(vac_id: str, use_full_cvs: bool = False, target_candidates: list[str] = None) -> dict:
+def match(vac_id: str, use_full_cvs: bool = False) -> dict:
     vacancy_text = load_vacancy(vac_id)
     index = load_index()
-    
-    if target_candidates:
-        # Filter pool to only selected candidates
-        index = {k: v for k, v in index.items() if k in target_candidates}
-        if not index:
-            sys.exit(f"None of the requested candidates {target_candidates} were found in index.")
-
     reqs = VACANCY_HARD_REQS.get(vac_id, {})
 
     # Step 1 — hard filter
@@ -271,7 +264,6 @@ def main() -> None:
                         help="Use full CV markdown bodies (better signal, more tokens)")
     parser.add_argument("--out", metavar="PATH",
                         help="Write JSON output to file instead of stdout")
-    parser.add_argument("--candidates", help="Comma-separated candidate IDs to include (restricts pool)")
     parser.add_argument("--list", action="store_true",
                         help="List available vacancy IDs and exit")
     args = parser.parse_args()
@@ -281,11 +273,7 @@ def main() -> None:
         print("\n".join(ids))
         return
 
-    target_cands = None
-    if args.candidates:
-        target_cands = [c.strip() for c in args.candidates.split(",") if c.strip()]
-
-    result = match(args.vacancy_id, use_full_cvs=args.full, target_candidates=target_cands)
+    result = match(args.vacancy_id, use_full_cvs=args.full)
     output = json.dumps(result, indent=2, ensure_ascii=False)
 
     if args.out:

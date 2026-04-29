@@ -1,0 +1,23 @@
+Copyright © 2026 WE+ × Soulware
+
+This repository and its contents (including anonymized candidate CVs and
+vacancy data in `data/`) are provided for the sole purpose of the WE+ × Soulware
+hackathon held 2026-04-28 through 2026-05-02.
+
+PERMITTED:
+- Forking and cloning by hackathon participants for the duration of the event
+- Building and demoing AI matching prototypes during the event
+- Internal post-hackathon discussions within WE+, AAA group, and Soulware
+
+NOT PERMITTED:
+- Public redistribution of `data/` (in whole or in part), including but not
+  limited to: public GitHub repos, blog posts, social media, CDNs, AI training
+  datasets, third-party services
+- Re-identification of anonymized candidates
+- Commercial use outside the WE+ × Soulware engagement
+- Sharing with parties outside WE+, AAA, and Soulware
+
+Code (everything outside `data/` and `examples/`) is licensed permissively for
+hackathon participants to copy, modify, and build upon for non-commercial use.
+
+Questions: koen@soulware.be (Soulware) or gert.dubois@we-plus.be (WE+).
