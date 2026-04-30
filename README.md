@@ -1,85 +1,36 @@
-# we-plus-hackathon
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Starter pack for the **WE+ × Soulware AI hackathon** (Hasselt, 2026-04-28 / 30 / 05-02).
+## Getting Started
 
-You're building an **AI-powered candidate matcher**: given a real WE+/Privatum **client request**, surface the top consultants from the WE+ pool, with reasoning the user can trust.
-
----
-
-## Quick start (5 min)
-
-This is a **private** repo. Forks are disabled at the org level → just **clone** and work in your local copy.
+First, run the development server:
 
 ```bash
-# 1. Clone (you've been added as a collaborator)
-git clone git@github.com:soulware-hq/we-plus-hackathon.git
-cd we-plus-hackathon
-
-# 2. Pick a scaffold (or roll your own)
-cd scaffolds/python  # or scaffolds/node
-
-# 3. Set the API key
-cp ../../.env.example ../../.env
-# edit ../../.env, paste ANTHROPIC_API_KEY
-
-# 4. Run the starter
-uv run match.py VAC-001        # python
+npm run dev
 # or
-bun install && bun run match.ts VAC-001   # node
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-**Need to share work back?** Push a branch to this repo (`git push origin your-crew-name`), or copy *code only* (never `data/`) to a personal private repo. **Never push the data publicly.** See [`PRIVACY.md`](PRIVACY.md).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Look at the data first:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-ls data/vacancies/   # 11 real client requests (VAC-001…011)
-ls data/cvs/         # 54 anonymized consultant CVs (CAND-001…054)
-cat data/cvs/index.json | jq '.["CAND-042"]'
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## What's in this repo
+To learn more about Next.js, take a look at the following resources:
 
-| Path | What |
-|------|------|
-| [`BRIEF.md`](BRIEF.md) | The task, evaluation criteria, "what good looks like" |
-| [`PRIVACY.md`](PRIVACY.md) | GDPR + data-handling rules. **Read before you run anything.** |
-| [`DATA.md`](DATA.md) | Dataset description (sources, schema, known caveats) |
-| [`CREWS.md`](CREWS.md) | 8 crews × anchor + members + edge |
-| `data/vacancies/` | 11 real client requests (Java, Security, BA/PM, Test) — Privatum partner intake |
-| `data/cvs/` | 54 anonymized consultant CVs from the WE+ pool |
-| `scaffolds/python/` | `uv` + `anthropic` SDK starter |
-| `scaffolds/node/` | `bun` + `@anthropic-ai/sdk` starter |
-| `examples/` | Match-output schema + a sample run |
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
----
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## The task (TL;DR)
+## Deploy on Vercel
 
-> A client request comes in. The crew has 30 minutes. Build something that, given a request, returns a **ranked shortlist of candidates** (top 3–5) with a **reason** for each match — useful enough that a recruiter would actually use it.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Full brief in [`BRIEF.md`](BRIEF.md).
-
-Sessions:
-- **Tue 28/04** — Session 1: build (30-min sprint)
-- **Wed 30/04** — Session 2: make it sharper (deploy + benchmark)
-- **Thu 02/05** — Session 3: ship it (deploy + privacy + handover)
-
----
-
-## Links
-
-- 🌐 Hackathon hub: <https://weplus-session-1.vercel.app>
-- 💬 Discord: invite in your application email
-- 🎥 Live (Google Meet): link in Discord
-- 📦 Repo (this): <https://github.com/soulware-hq/we-plus-hackathon>
-
----
-
-## Privacy
-
-The CVs in `data/cvs/` are **anonymized** but they describe real people working at real companies. **They never leave your laptop.** No public deploys with the data inside. No uploads to external services that aren't covered by an API agreement. See [`PRIVACY.md`](PRIVACY.md).
-
-The `mapping-private.json` (real-name → CAND-ID) is **not in the repo** — it stays with WE+ leadership for evaluation only.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
