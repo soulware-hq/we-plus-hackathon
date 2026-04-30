@@ -116,7 +116,8 @@ export default function Dashboard() {
     const skills = cand.primary_stack?.join(' ').toLowerCase() || '';
     const role = cand.primary_role?.toLowerCase() || '';
     const langs = cand.languages?.join(' ').toLowerCase() || '';
-    return id.toLowerCase().includes(term) || skills.includes(term) || role.includes(term) || langs.includes(term);
+    const cvText = cand.description?.toLowerCase() || '';
+    return id.toLowerCase().includes(term) || skills.includes(term) || role.includes(term) || langs.includes(term) || cvText.includes(term);
   });
 
   return (
@@ -440,6 +441,15 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
+                  
+                  {currentCandidateData.description && (
+                    <div className={styles.descriptionBox}>
+                      <h4 style={{ marginBottom: 8, color: 'var(--text-muted)' }}>Complete CV</h4>
+                      <div style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: '500px', overflowY: 'auto', paddingRight: '10px' }}>
+                        {currentCandidateData.description}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <p>Select a candidate</p>
@@ -461,11 +471,14 @@ export default function Dashboard() {
                     <div className={styles.kanbanHeader}>{stage}</div>
                     
                     {/* Just load all candidates from followupData into Suggested for now */}
-                    {stage === 'Suggested' && followupData.flatMap(f => f.matches || []).map((match: any, idx: number) => (
+                    {stage === 'Suggested' && followupData.flatMap(f => (f.matches || []).map((m: any) => ({ ...m, vacId: f.vacancy_id }))).map((match: any, idx: number) => (
                       <div key={`${match.candidate_id}-${idx}`} className={styles.kanbanCard} draggable>
                         <strong>{match.name && match.name !== "Extract Name from CV or use ID" ? match.name : match.candidate_id}</strong>
                         <div style={{ fontSize: 12, color: 'var(--primary)', marginTop: 4 }}>
                           Score: {match.score ? (match.score <= 1 ? (match.score * 100).toFixed(0) : match.score) : 0}%
+                        </div>
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
+                          Matched for: {match.vacId}
                         </div>
                       </div>
                     ))}

@@ -22,6 +22,15 @@ export async function GET() {
         vacData[vacId].description = readFileSync(mdPath, 'utf-8');
       }
     }
+
+    // Inject Markdown descriptions into candidates (CVs)
+    for (const candId of Object.keys(cvsData)) {
+      if (candId === '_meta') continue;
+      const mdPath = join(dataDir, 'cvs', `${candId}.md`);
+      if (existsSync(mdPath)) {
+        cvsData[candId].description = readFileSync(mdPath, 'utf-8');
+      }
+    }
     
     return NextResponse.json({
       candidates: cvsData,
