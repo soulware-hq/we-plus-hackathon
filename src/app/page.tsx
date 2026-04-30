@@ -104,6 +104,24 @@ export default function Dashboard() {
     setMatching(false);
   };
 
+  // Kanban Drag and Drop Handlers
+  const handleDragStart = (e: React.DragEvent, id: string) => {
+    e.dataTransfer.setData('text/plain', id);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault(); // Necessary to allow dropping
+  };
+
+  const handleDrop = (e: React.DragEvent, targetStage: string) => {
+    e.preventDefault();
+    const id = e.dataTransfer.getData('text/plain');
+    setKanbanState(prev => ({
+      ...prev,
+      [id]: targetStage
+    }));
+  };
+
   if (loading) {
     return <div style={{ padding: 24 }}>Loading...</div>;
   }
