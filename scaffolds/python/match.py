@@ -57,7 +57,8 @@ CRITICAL INSTRUCTIONS:
 2. ROBUSTNESS: Be resilient to broken text formatting (e.g. "Informat on Secur ty Off cer"). Schema drift is real.
 3. TACIT EXPERIENCE: Look for tacit signals (e.g., "Led a team through M&A" shows seniority) instead of just keyword grepping.
 4. CALIBRATION: Spread your scores realistically (e.g., 40-95%). Not everyone is a 92. If no candidate is a strong fit, score them low and output realistic reasoning.
-5. RANK: You MUST return exactly 3 candidates (if there are at least 3 eligible unique persons). Rank them 1, 2, and 3.
+5. RANK: You MUST return exactly {top_n} candidates (if there are at least that many eligible unique persons). Rank them accordingly.
+6. VOLUME: If you cannot find {top_n} good candidates, return as many as are reasonably close matches, but try to hit the target.
 
 SCORING WEIGHTS:
   • Skill match (0-10)        — recent stack vs. requirements. Penalise generic language ("dynamic team player" with no projects).
@@ -65,19 +66,19 @@ SCORING WEIGHTS:
   • Industry relevance (0-10) — recent projects in similar sector.
 
 RETURN — valid JSON only, no markdown fences, no prose outside the object:
-{
+{{
   "vacancy_id": "VAC-XXX",
   "matches": [
-    {
+    {{
       "rank": 1,
       "candidate_id": "CAND-NNN",
       "name": "Extract Name from CV or use ID",
       "score": 0.85,
-      "sub_scores": {
+      "sub_scores": {{
         "skills": 8,
         "seniority": 9,
         "industry": 8
-      },
+      }},
       "evidence": [
         "EXACT QUOTE FROM CV showing skill (e.g., 'Led migration to Spring Boot in 2023')",
         "EXACT QUOTE FROM CV showing industry experience"
@@ -86,12 +87,12 @@ RETURN — valid JSON only, no markdown fences, no prose outside the object:
         "Missing AWS certification",
         "No recent React projects"
       ],
-      "reason": "Overall defensible reasoning based on sub-scores. Do NOT rationalise a bad fit. If it's a stretch fit, state that clearly.",
+      "reason": "One-sentence sharp justification why they match. NO FLUFF. STRAIGHT TO THE POINT.",
       "motivation_nl": "1 paragraph Dutch, client-ready, paste-able into a response email. No candidate name."
-    }
+    }}
   ]
-}
-Return exactly 3 matches, sorted by score descending."""
+}}
+Return exactly {top_n} matches, sorted by score descending."""
 
 
 # ── Language helpers ──────────────────────────────────────────────────────────
@@ -155,20 +156,49 @@ def apply_hard_filter(cid: str, meta: dict, reqs: dict) -> tuple[bool, str | Non
 
 
 # ── Data loaders ──────────────────────────────────────────────────────────────
+import os
+from supabase import create_client, Client
+
+def get_supabase() -> Client:
+    url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL", "")
+    key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY", "")
+    if not url or not key:
+        sys.exit("Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY in environment.")
+    return create_client(url, key)
+
 def load_vacancy(vac_id: str) -> str:
-    path = VAC_DIR / f"{vac_id}.md"
-    if not path.exists():
-        sys.exit(f"Vacancy {vac_id} not found at {path}")
-    return path.read_text()
+    supabase = get_supabase()
+    response = supabase.table("vacancies").select("description").eq("id", vac_id).execute()
+    if not response.data:
+        sys.exit(f"Vacancy {vac_id} not found in database")
+    return response.data[0].get("description", "") or ""
 
 
 def load_index() -> dict:
-    return json.loads((CV_DIR / "index.json").read_text())
+    supabase = get_supabase()
+    response = supabase.table("candidates").select("*").execute()
+    
+    index = {}
+    for cand in response.data:
+        # Reconstruct the meta dictionary layout expected by the script
+        index[cand["id"]] = {
+            "name": cand.get("name"),
+            "primary_role": cand.get("primary_role"),
+            "years_experience": cand.get("years_experience"),
+            "primary_stack": cand.get("primary_stack", []),
+            "languages": cand.get("languages", []),
+            "description": cand.get("description", "")
+        }
+    return index
 
 
 def load_cv_body(cid: str) -> str | None:
-    path = CV_DIR / f"{cid}.md"
-    return path.read_text() if path.exists() else None
+    # We already fetched 'description' in load_index, but to preserve the API signature:
+    supabase = get_supabase()
+    response = supabase.table("candidates").select("description").eq("id", cid).execute()
+    if not response.data:
+        return None
+    return response.data[0].get("description", "")
 
 
 def build_candidate_block(cid: str, meta: dict, full_text: str | None) -> str:
@@ -188,7 +218,7 @@ def build_candidate_block(cid: str, meta: dict, full_text: str | None) -> str:
 
 
 # ── Claude call ───────────────────────────────────────────────────────────────
-def call_claude(vacancy_text: str, vac_id: str, candidate_blocks: str) -> dict:
+def call_claude(vacancy_text: str, vac_id: str, candidate_blocks: str, result_limit: int = 3) -> dict:
     api_key = os.getenv("ANTHROPIC_API_KEY", "")
     if not api_key:
         sys.exit(
@@ -202,6 +232,9 @@ def call_claude(vacancy_text: str, vac_id: str, candidate_blocks: str) -> dict:
         f"VACANCY ({vac_id}):\n{vacancy_text}\n\n"
         f"ELIGIBLE CANDIDATES:\n{candidate_blocks}"
     )
+    
+    # Inject top_n into the system prompt
+    current_system_prompt = SYSTEM_PROMPT.format(top_n=result_limit)
 
     msg = client.messages.create(
         model=os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6"),
@@ -209,7 +242,7 @@ def call_claude(vacancy_text: str, vac_id: str, candidate_blocks: str) -> dict:
         system=[
             {
                 "type": "text",
-                "text": SYSTEM_PROMPT,
+                "text": current_system_prompt,
                 "cache_control": {"type": "ephemeral"},  # cache system prompt
             }
         ],
@@ -217,15 +250,25 @@ def call_claude(vacancy_text: str, vac_id: str, candidate_blocks: str) -> dict:
     )
 
     raw = msg.content[0].text.strip()
-    # Strip accidental markdown fences if the model added them
-    if raw.startswith("```"):
-        raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
+    
+    # Robust JSON extraction: look for the outermost curly braces
+    import re
+    json_match = re.search(r'(\{.*\})', raw, re.DOTALL)
+    if json_match:
+        raw = json_match.group(1)
+    else:
+        # Fallback to the original logic if regex fails
+        if raw.startswith("```"):
+            raw = raw.split("\n", 1)[1].rsplit("```", 1)[0]
+
+    if not raw:
+        raise ValueError("Claude returned an empty response")
 
     return json.loads(raw)
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
-def match(vac_id: str, use_full_cvs: bool = False, target_candidates: list[str] = None) -> dict:
+def match(vac_id: str, use_full_cvs: bool = False, target_candidates: list[str] = None, result_limit: int = 3) -> dict:
     vacancy_text = load_vacancy(vac_id)
     index = load_index()
     
@@ -265,7 +308,7 @@ def match(vac_id: str, use_full_cvs: bool = False, target_candidates: list[str] 
     candidate_context = "\n\n".join(blocks)
 
     # Step 3 — LLM ranking
-    result = call_claude(vacancy_text, vac_id, candidate_context)
+    result = call_claude(vacancy_text, vac_id, candidate_context, result_limit=result_limit)
 
     # Step 4 — enrich output
     result["generated_at"] = datetime.now(timezone.utc).isoformat()
@@ -287,6 +330,7 @@ def main() -> None:
     parser.add_argument("--out", metavar="PATH",
                         help="Write JSON output to file instead of stdout")
     parser.add_argument("--candidates", help="Comma-separated candidate IDs to include (restricts pool)")
+    parser.add_argument("--top", type=int, default=3, help="Number of top candidates to return (default: 3)")
     parser.add_argument("--list", action="store_true",
                         help="List available vacancy IDs and exit")
     args = parser.parse_args()
@@ -300,7 +344,7 @@ def main() -> None:
     if args.candidates:
         target_cands = [c.strip() for c in args.candidates.split(",") if c.strip()]
 
-    result = match(args.vacancy_id, use_full_cvs=args.full, target_candidates=target_cands)
+    result = match(args.vacancy_id, use_full_cvs=args.full, target_candidates=target_cands, result_limit=args.top)
     output = json.dumps(result, indent=2, ensure_ascii=False)
 
     if args.out:

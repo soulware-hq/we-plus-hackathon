@@ -1,35 +1,44 @@
 import { NextResponse } from 'next/server';
-import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function GET() {
   try {
-    const dataDir = join(process.cwd(), 'data');
-    
-    // Read CVs
-    const cvsIndex = join(dataDir, 'cvs', 'index.json');
-    const cvsData = JSON.parse(readFileSync(cvsIndex, 'utf-8'));
-    
-    // Read Vacancies
-    const vacIndex = join(dataDir, 'vacancies', 'index.json');
-    const vacData = JSON.parse(readFileSync(vacIndex, 'utf-8'));
+    // Fetch data from Supabase
+    const { data: candidatesTable, error: candError } = await supabase.from('candidates').select('*');
+    const { data: vacanciesTable, error: vacError } = await supabase.from('vacancies').select('*');
 
-    // Inject Markdown descriptions into vacancies
-    for (const vacId of Object.keys(vacData)) {
-      if (vacId === '_meta') continue;
-      const mdPath = join(dataDir, 'vacancies', `${vacId}.md`);
-      if (existsSync(mdPath)) {
-        vacData[vacId].description = readFileSync(mdPath, 'utf-8');
-      }
+    if (candError) throw candError;
+    if (vacError) throw vacError;
+
+    // Reconstruct the expected object structure
+    const cvsData: Record<string, any> = { _meta: { source: "Supabase Database" } };
+    for (const cand of candidatesTable) {
+      cvsData[cand.id] = {
+        name: cand.name,
+        primary_role: cand.primary_role,
+        years_experience: cand.years_experience,
+        primary_stack: cand.primary_stack,
+        languages: cand.languages,
+        description: cand.description
+      };
     }
 
-    // Inject Markdown descriptions into candidates (CVs)
-    for (const candId of Object.keys(cvsData)) {
-      if (candId === '_meta') continue;
-      const mdPath = join(dataDir, 'cvs', `${candId}.md`);
-      if (existsSync(mdPath)) {
-        cvsData[candId].description = readFileSync(mdPath, 'utf-8');
-      }
+    const vacData: Record<string, any> = { _meta: { source: "Supabase Database" } };
+    for (const vac of vacanciesTable) {
+      vacData[vac.id] = {
+        title: vac.title,
+        region: vac.region,
+        language: vac.language,
+        duration: vac.duration,
+        end_client: vac.end_client,
+        start: vac.start,
+        description: vac.description
+      };
     }
     
     return NextResponse.json({
@@ -37,7 +46,7 @@ export async function GET() {
       vacancies: vacData
     });
   } catch (error) {
-    console.error("Failed to read data:", error);
+    console.error("Failed to read data from Supabase:", error);
     return NextResponse.json({ error: "Failed to load data" }, { status: 500 });
   }
 }

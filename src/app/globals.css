@@ -1,39 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* WE+ Theme Color Palette (Screenshot Inspo) */
-  --bg-gradient-start: #062b3a;
-  --bg-gradient-glow: #fdb736;
-  --bg-gradient-orange: #df691a;
-  --bg-gradient-end: #03131c;
+  /* Ocean Blue Premium Palette */
+  --ocean-950: #020617;
+  --ocean-900: #0f172a;
+  --ocean-800: #1e293b;
+  --ocean-700: #334155;
+  --ocean-600: #475569;
   
-  /* Glass Surface - Dark Mode for Contrast */
-  --glass-bg: rgba(6, 25, 38, 0.55);
-  --glass-border: rgba(255, 255, 255, 0.15);
-  --glass-border-hover: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-300: #93c5fd;
+  --blue-glow: rgba(59, 130, 246, 0.4);
+  
+  --white: #ffffff;
+  --grey-50: #f8fafc;
+  --grey-100: #f1f5f9;
+  --grey-200: #e2e8f0;
+  --grey-300: #cbd5e1;
+  --grey-400: #94a3b8;
+  
+  /* Glass Surface - Ocean Theme */
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(59, 130, 246, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
   --glass-blur: blur(20px);
   
   /* Text */
-  --primary: #ffffff;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --secondary: #cbd5e1;
+  --primary: var(--white);
+  --text: var(--grey-200);
+  --text-bright: var(--white);
+  --text-muted: var(--grey-400);
+  --secondary: var(--grey-300);
   
-  /* CTA / Accent - Bright Cyan from button */
-  --cta: #2dd4e6;
-  --cta-hover: #1cb5c4;
-  --cta-text: #051b24;
+  /* CTA / Accent - Ocean Blue */
+  --cta: var(--blue-500);
+  --cta-hover: var(--blue-400);
+  --cta-text: var(--white);
+  
+  /* Status Colors */
+  --success: #10b981;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  
+  /* Functional Aliases (matching user request) */
+  --gold: var(--blue-400); /* Alias gold to light blue to keep existing logic working */
+  --stone-950: var(--ocean-950);
+  --stone-900: var(--ocean-900);
+  --stone-800: var(--ocean-800);
+  --stone-700: var(--ocean-700);
+  --stone-600: var(--ocean-600);
   
   /* Misc */
   --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 8px;
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Fonts - Apple System */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* Fonts */
+  --font-heading: 'Fira Code', monospace;
+  --font-body: 'Fira Sans', sans-serif;
+  
   --border: var(--glass-border);
   --surface: var(--glass-bg);
 }
@@ -42,20 +70,26 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: default;
+}
+
+.cursor-pointer, button, a, input[type="checkbox"], [role="button"] {
+  cursor: pointer;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   color: var(--text);
-  /* Simpler, professional dark background */
-  background-color: #030c14;
+  background-color: var(--ocean-950);
   background-image: 
-    radial-gradient(circle at 15% 0%, rgba(45, 212, 230, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 100%, rgba(45, 212, 230, 0.05) 0%, transparent 40%);
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 1) 0%, transparent 100%),
+    url("https://www.transparenttextures.com/patterns/dark-matter.png"); /* Subtle noise texture */
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .app-container {
@@ -66,6 +100,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
   font-weight: 600;
   color: var(--primary);
   letter-spacing: -0.02em;
@@ -92,46 +127,48 @@ p {
   background-color: var(--cta);
   color: var(--cta-text);
   border: none;
-  padding: 10px 20px;
-  border-radius: 40px; /* Pill shape like screenshot */
+  padding: 10px 24px;
+  border-radius: 40px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
   transition: var(--transition);
-  font-family: inherit;
-  box-shadow: 0 4px 15px rgba(45, 212, 230, 0.4);
+  font-family: var(--font-heading);
+  box-shadow: 0 4px 15px var(--blue-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--cta-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(45, 212, 230, 0.6);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
 }
 
 .btn-primary:disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
   color: var(--primary);
-  padding: 10px 20px;
+  padding: 10px 24px;
   border-radius: 40px;
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
   transition: var(--transition);
-  font-family: inherit;
+  font-family: var(--font-heading);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
   border-color: var(--glass-border-hover);
 }
 
@@ -141,13 +178,16 @@ p {
   align-items: center;
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  background: rgba(45, 212, 230, 0.15);
-  border: 1px solid rgba(45, 212, 230, 0.3);
-  color: #a5f3fc;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(96, 165, 250, 0.1);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  color: var(--gold);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Form Elements */

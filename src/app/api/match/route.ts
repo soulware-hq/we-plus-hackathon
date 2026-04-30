@@ -9,7 +9,7 @@ const execAsync = promisify(exec);
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { vacancyId, candidateIds } = body;
+    const { vacancyId, candidateIds, limit = 3 } = body;
 
     if (!vacancyId) {
       return NextResponse.json({ error: "vacancyId is required" }, { status: 400 });
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     const scriptPath = process.cwd() + '/scaffolds/python/match.py';
     const outPath = process.cwd() + `/scaffolds/python/results/${vacancyId}.json`;
 
-    let command = `${pythonBin} ${scriptPath} ${vacancyId} --out ${outPath}`;
+    let command = `${pythonBin} ${scriptPath} ${vacancyId} --out ${outPath} --top ${limit}`;
     
     if (candidateIds && Array.isArray(candidateIds) && candidateIds.length > 0) {
       command += ` --candidates ${candidateIds.join(',')}`;

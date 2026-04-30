@@ -5,7 +5,10 @@ description = "Python starter for the WE+ x Soulware AI hackathon"
 requires-python = ">=3.11"
 dependencies = [
     "anthropic>=0.40.0",
+    "pymupdf>=1.27.2.3",
+    "python-docx>=1.2.0",
     "python-dotenv>=1.0.0",
+    "supabase>=2.29.0",
 ]
 
 [tool.uv]
