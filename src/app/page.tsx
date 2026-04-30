@@ -19,6 +19,9 @@ export default function Dashboard() {
   const [candidateSearchTerm, setCandidateSearchTerm] = useState('');
   const [poolSearchTerm, setPoolSearchTerm] = useState('');
   const [activeCandidate, setActiveCandidate] = useState<string | null>(null);
+  
+  // Kanban Drag and Drop State
+  const [kanbanState, setKanbanState] = useState<Record<string, string>>({});
 
   useEffect(() => {
     fetch('/api/data')
@@ -485,26 +488,52 @@ export default function Dashboard() {
               
               <div className={styles.kanbanBoard}>
                 {['Suggested', 'Interviewing', 'Offered', 'Rejected'].map(stage => (
-                  <div key={stage} className={styles.kanbanColumn}>
+                  <div 
+                    key={stage} 
+                    className={styles.kanbanColumn}
+                    onDragOver={handleDragOver}
+                    onDrop={(e) => handleDrop(e, stage)}
+                  >
                     <div className={styles.kanbanHeader}>{stage}</div>
                     
-                    {/* Just load all candidates from followupData into Suggested for now */}
-                    {stage === 'Suggested' && followupData.flatMap(f => (f.matches || []).map((m: any) => ({ ...m, vacId: f.vacancy_id }))).map((match: any, idx: number) => (
-                      <div key={`${match.candidate_id}-${idx}`} className={styles.kanbanCard} draggable>
-                        <strong>{match.name && match.name !== "Extract Name from CV or use ID" ? match.name : match.candidate_id}</strong>
-                        <div style={{ fontSize: 12, color: 'var(--primary)', marginTop: 4 }}>
-                          Score: {match.score ? (match.score <= 1 ? (match.score * 100).toFixed(0) : match.score) : 0}%
+                    {followupData
+                      .flatMap(f => (f.matches || []).map((m: any) => ({ ...m, vacId: f.vacancy_id })))
+                      .filter((match: any) => {
+                        const id = `${match.vacId}-${match.candidate_id}`;
+                        const matchStage = kanbanState[id] || 'Suggested'; // Default to suggested
+                        return matchStage === stage;
+                      })
+                      .map((match: any, idx: number) => {
+                        const id = `${match.vacId}-${match.candidate_id}`;
+                        return (
+                          <div 
+                            key={`${id}-${idx}`} 
+                            className={styles.kanbanCard} 
+                            draggable
+                            onDragStart={(e) => handleDragStart(e, id)}
+                          >
+                            <strong>{match.name && match.name !== "Extract Name from CV or use ID" ? match.name : match.candidate_id}</strong>
+                            <div style={{ fontSize: 12, color: 'var(--primary)', marginTop: 4 }}>
+                              Score: {match.score ? (match.score <= 1 ? (match.score * 100).toFixed(0) : match.score) : 0}%
+                            </div>
+                            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
+                              Matched for: {match.vacId}
+                            </div>
+                          </div>
+                        );
+                      })}
+                      
+                    {/* Show empty state if nothing is in this column */}
+                    {followupData
+                      .flatMap(f => (f.matches || []).map((m: any) => ({ ...m, vacId: f.vacancy_id })))
+                      .filter((match: any) => {
+                        const id = `${match.vacId}-${match.candidate_id}`;
+                        return (kanbanState[id] || 'Suggested') === stage;
+                      }).length === 0 && (
+                        <div style={{ padding: '20px', textAlign: 'center', color: 'rgba(255,255,255,0.2)', fontSize: '14px', border: '1px dashed rgba(255,255,255,0.1)', borderRadius: '8px', marginTop: '10px' }}>
+                          Drop here
                         </div>
-                        <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-                          Matched for: {match.vacId}
-                        </div>
-                      </div>
-                    ))}
-                    
-                    {/* Other columns empty by default for drag & drop UI mockup */}
-                    {stage !== 'Suggested' && (
-                      <div className={styles.kanbanEmpty}>Drop here</div>
-                    )}
+                      )}
                   </div>
                 ))}
               </div>
