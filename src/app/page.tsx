@@ -11,10 +11,11 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [matching, setMatching] = useState(false);
   const [results, setResults] = useState<any>(null);
+  const [followupData, setFollowupData] = useState<any[]>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // New States for Candidates Tab
-  const [sidebarTab, setSidebarTab] = useState<'vacancies' | 'candidates'>('vacancies');
+  const [sidebarTab, setSidebarTab] = useState<'vacancies' | 'candidates' | 'followup'>('vacancies');
   const [candidateSearchTerm, setCandidateSearchTerm] = useState('');
   const [activeCandidate, setActiveCandidate] = useState<string | null>(null);
 
@@ -38,6 +39,13 @@ export default function Dashboard() {
         console.error("Failed to load data", err);
         setLoading(false);
       });
+
+    fetch('/api/followup')
+      .then(res => res.json())
+      .then(d => {
+        if (d.results) setFollowupData(d.results);
+      })
+      .catch(err => console.error("Failed to load follow up", err));
   }, []);
 
   const toggleCandidate = (id: string) => {
@@ -78,6 +86,13 @@ export default function Dashboard() {
       });
       const resultData = await res.json();
       setResults(resultData);
+      
+      // Refresh follow up data after a run
+      fetch('/api/followup')
+        .then(res => res.json())
+        .then(d => {
+          if (d.results) setFollowupData(d.results);
+        });
     } catch (error) {
       console.error(error);
       alert("Match failed. Check console for details.");
@@ -126,6 +141,12 @@ export default function Dashboard() {
           >
             Candidates
           </button>
+          <button 
+            className={`${styles.tab} ${sidebarTab === 'followup' ? styles.activeTab : ''}`}
+            onClick={() => setSidebarTab('followup')}
+          >
+            Follow Up
+          </button>
         </div>
 
         {sidebarTab === 'vacancies' ? (
@@ -155,7 +176,7 @@ export default function Dashboard() {
               ))}
             </div>
           </>
-        ) : (
+        ) : sidebarTab === 'candidates' ? (
           <>
             <div className={styles.sidebarHeader}>
               <h2>Candidates</h2>
@@ -188,6 +209,39 @@ export default function Dashboard() {
                   </div>
                 </div>
               ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={styles.sidebarHeader}>
+              <h2>Follow Up</h2>
+              <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
+                {followupData.length} active matches
+              </div>
+            </div>
+            <div className={styles.vacancyList}>
+              {followupData.map((fData: any) => (
+                <div 
+                  key={fData.vacancy_id} 
+                  className={styles.vacancyItem}
+                  onClick={() => {
+                    setActiveVac(fData.vacancy_id);
+                    setResults(fData);
+                    setSidebarTab('vacancies');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  <div className={styles.vacancyTitle}>{fData.vacancy_id}</div>
+                  <div className={styles.vacancyMeta}>
+                    {fData.matches?.length || 0} candidates matched
+                  </div>
+                </div>
+              ))}
+              {followupData.length === 0 && (
+                <div style={{ padding: '16px', color: 'var(--text-muted)', fontSize: 14 }}>
+                  No match results yet. Run AI Match first.
+                </div>
+              )}
             </div>
           </>
         )}
@@ -236,10 +290,19 @@ export default function Dashboard() {
                         {currentVacancyData.region && <span className="badge">Region: {currentVacancyData.region}</span>}
                         {currentVacancyData.duration && <span className="badge">Duration: {currentVacancyData.duration}</span>}
                       </div>
-                      <p style={{ color: 'var(--text-muted)', fontSize: 14 }}>
+                      <p style={{ color: 'var(--text-muted)', fontSize: 14, marginBottom: 16 }}>
                         Client: {currentVacancyData.end_client || 'N/A'}<br/>
                         Start: {currentVacancyData.start || 'ASAP'}
                       </p>
+                      
+                      {currentVacancyData.description && (
+                        <div className={styles.descriptionBox}>
+                          <h4 style={{ marginBottom: 8, color: 'var(--text-muted)' }}>Description</h4>
+                          <div style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: '300px', overflowY: 'auto', paddingRight: '10px' }}>
+                            {currentVacancyData.description}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <p>Select a vacancy</p>
@@ -288,25 +351,51 @@ export default function Dashboard() {
                   {results.matches && results.matches.length > 0 ? (
                     results.matches.map((match: any, index: number) => {
                       const cData = data.candidates[match.candidate_id] || {};
+                      const displayName = match.name && match.name !== "Extract Name from CV or use ID" && match.name !== match.candidate_id 
+                        ? `${match.name} (${match.candidate_id})` 
+                        : match.candidate_id;
+                      
                       return (
                         <div key={index} className={styles.matchCard}>
                           <div className={styles.matchHeader}>
                             <div>
-                              <h3 style={{ display: 'inline-block', marginRight: 8 }}>{match.candidate_id}</h3>
-                              <span style={{ color: 'var(--text-muted)' }}>{cData.primary_role || ''}</span>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span className={styles.rankBadge}>#{match.rank || index + 1}</span>
+                                <h3 style={{ display: 'inline-block' }}>{displayName}</h3>
+                              </div>
+                              <span style={{ color: 'var(--text-muted)', display: 'block', marginTop: '4px' }}>{cData.primary_role || ''}</span>
                             </div>
                             <div className={styles.matchScore}>
-                              {(match.score * 100).toFixed(0)}%
+                              {match.score ? (match.score <= 1 ? (match.score * 100).toFixed(0) : match.score) : 0}%
                             </div>
                           </div>
+                          
+                          {match.sub_scores && (
+                            <div className={styles.subScores}>
+                              <div className={styles.subScore}><span className={styles.subScoreLabel}>Skills</span> <span className={styles.subScoreValue}>{match.sub_scores.skills}/10</span></div>
+                              <div className={styles.subScore}><span className={styles.subScoreLabel}>Seniority</span> <span className={styles.subScoreValue}>{match.sub_scores.seniority}/10</span></div>
+                              <div className={styles.subScore}><span className={styles.subScoreLabel}>Industry</span> <span className={styles.subScoreValue}>{match.sub_scores.industry}/10</span></div>
+                            </div>
+                          )}
+                          
                           <p className={styles.matchReason}>
                             <strong>Reason:</strong> {match.reason}
                           </p>
-                          {match.risks && match.risks.length > 0 && (
+                          
+                          {match.evidence && match.evidence.length > 0 && (
                             <div className={styles.matchRisks}>
-                              <strong>Risks:</strong>
-                              <ul style={{ marginLeft: 20, marginTop: 4 }}>
-                                {match.risks.map((r: string, i: number) => <li key={i}>{r}</li>)}
+                              <strong style={{ color: 'var(--primary)' }}>Evidence:</strong>
+                              <ul style={{ marginLeft: 20, marginTop: 4, color: 'var(--text)', fontSize: '0.9rem' }}>
+                                {match.evidence.map((e: string, i: number) => <li key={i}>"{e}"</li>)}
+                              </ul>
+                            </div>
+                          )}
+
+                          {match.gaps && match.gaps.length > 0 && (
+                            <div className={styles.matchRisks} style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', borderLeft: '2px solid rgb(239, 68, 68)' }}>
+                              <strong style={{ color: 'rgb(252, 165, 165)' }}>Gaps & Risks:</strong>
+                              <ul style={{ marginLeft: 20, marginTop: 4, color: 'rgb(252, 165, 165)', fontSize: '0.9rem' }}>
+                                {match.gaps.map((r: string, i: number) => <li key={i}>{r}</li>)}
                               </ul>
                             </div>
                           )}
@@ -319,7 +408,7 @@ export default function Dashboard() {
                 </div>
               )}
             </>
-          ) : (
+          ) : sidebarTab === 'candidates' ? (
             /* Candidate Details View */
             <div className={styles.section}>
               <div className={styles.sectionTitle}>
@@ -355,6 +444,39 @@ export default function Dashboard() {
               ) : (
                 <p>Select a candidate</p>
               )}
+            </div>
+          ) : (
+            /* Follow Up Kanban View */
+            <div className={styles.section} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div className={styles.sectionTitle}>
+                <h3>Follow Up Board</h3>
+              </div>
+              <p style={{ color: 'var(--text-muted)', marginBottom: 16 }}>
+                Drag and drop candidates across stages for your matched vacancies.
+              </p>
+              
+              <div className={styles.kanbanBoard}>
+                {['Suggested', 'Interviewing', 'Offered', 'Rejected'].map(stage => (
+                  <div key={stage} className={styles.kanbanColumn}>
+                    <div className={styles.kanbanHeader}>{stage}</div>
+                    
+                    {/* Just load all candidates from followupData into Suggested for now */}
+                    {stage === 'Suggested' && followupData.flatMap(f => f.matches || []).map((match: any, idx: number) => (
+                      <div key={`${match.candidate_id}-${idx}`} className={styles.kanbanCard} draggable>
+                        <strong>{match.name && match.name !== "Extract Name from CV or use ID" ? match.name : match.candidate_id}</strong>
+                        <div style={{ fontSize: 12, color: 'var(--primary)', marginTop: 4 }}>
+                          Score: {match.score ? (match.score <= 1 ? (match.score * 100).toFixed(0) : match.score) : 0}%
+                        </div>
+                      </div>
+                    ))}
+                    
+                    {/* Other columns empty by default for drag & drop UI mockup */}
+                    {stage !== 'Suggested' && (
+                      <div className={styles.kanbanEmpty}>Drop here</div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
