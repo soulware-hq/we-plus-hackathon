@@ -321,7 +321,7 @@ export default function Dashboard() {
                       {currentVacancyData.description && (
                         <div className={styles.descriptionBox}>
                           <h4 style={{ marginBottom: 8, color: 'var(--text-muted)' }}>Description</h4>
-                          <div style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: '300px', overflowY: 'auto', paddingRight: '10px' }}>
+                          <div style={{ whiteSpace: 'pre-wrap', fontSize: 13, lineHeight: 1.6, maxHeight: '600px', overflowY: 'auto', paddingRight: '10px' }}>
                             {currentVacancyData.description}
                           </div>
                         </div>
