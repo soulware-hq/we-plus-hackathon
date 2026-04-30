@@ -17,6 +17,7 @@ export default function Dashboard() {
   // New States for Candidates Tab
   const [sidebarTab, setSidebarTab] = useState<'vacancies' | 'candidates' | 'followup'>('vacancies');
   const [candidateSearchTerm, setCandidateSearchTerm] = useState('');
+  const [poolSearchTerm, setPoolSearchTerm] = useState('');
   const [activeCandidate, setActiveCandidate] = useState<string | null>(null);
 
   useEffect(() => {
@@ -321,9 +322,26 @@ export default function Dashboard() {
                   <p style={{ marginBottom: 12, fontSize: 14, color: 'var(--text-muted)' }}>
                     {selectedCands.size} of {candidates.length} selected
                   </p>
+                  <div style={{ marginBottom: 16 }}>
+                    <input 
+                      type="text" 
+                      placeholder="Filter candidates to select (name, role, skills)..." 
+                      className={styles.searchInput}
+                      value={poolSearchTerm}
+                      onChange={(e) => setPoolSearchTerm(e.target.value)}
+                    />
+                  </div>
                   
                   <div className={styles.candidateList}>
-                    {candidates.map(([id, cand]: [string, any]) => (
+                    {candidates.filter(([id, cand]: [string, any]) => {
+                      if (!poolSearchTerm) return true;
+                      const term = poolSearchTerm.toLowerCase();
+                      const skills = cand.primary_stack?.join(' ').toLowerCase() || '';
+                      const role = cand.primary_role?.toLowerCase() || '';
+                      const langs = cand.languages?.join(' ').toLowerCase() || '';
+                      const cvText = cand.description?.toLowerCase() || '';
+                      return id.toLowerCase().includes(term) || skills.includes(term) || role.includes(term) || langs.includes(term) || cvText.includes(term);
+                    }).map(([id, cand]: [string, any]) => (
                       <label key={id} className={styles.candidateItem}>
                         <input 
                           type="checkbox" 
